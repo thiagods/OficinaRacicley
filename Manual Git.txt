@@ -1,12 +1,11 @@
+Primeira vez que for usar:
 git clone https://github.com/thiagods/OficinaRacicley
 
-git pull
-git add .
-git status
-git commit -m "comentario"
-git push origin master
 
-
-Camilla Preguiça Magela
-Tigre Preguiça Tigre
+git pull -- Pega o código do git e atualiza no seu computador.
+git add . -- Adiciona todas as modificações feitas no git(O ponto é necessário).
+git status -- Verifica as mudanças realizadas.
+git commit -m "comentario" -- Adiciona o comentário(Necessário).
+git push -- Manda as modificações pro git.
+git push origin master -- Manda as modificações pro git Master.
 
