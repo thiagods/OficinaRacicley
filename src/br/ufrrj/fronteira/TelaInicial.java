@@ -8,5 +8,6 @@ public class TelaInicial {
 //		CadastrarCliente.cadastrar();
 //		BuscarCliente.buscar();
 		CadastrarFornecedor.cadastrar();
+		CadastrarReparo.cadastrar();
 	}
 }
