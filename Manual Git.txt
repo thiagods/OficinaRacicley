@@ -1,6 +1,7 @@
 Primeira vez que for usar:
 git clone https://github.com/thiagods/OficinaRacicley
 
+Depois de clonar, é necessário entrar na pasta do projeto.
 
 git pull -- Pega o código do git e atualiza no seu computador.
 git add . -- Adiciona todas as modificações feitas no git(O ponto é necessário).
