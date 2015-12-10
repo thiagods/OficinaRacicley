@@ -1,4 +1,4 @@
-spackage br.ufrrj.controladores;
+package br.ufrrj.controladores;
 
 import java.util.ArrayList;
 
