@@ -43,4 +43,8 @@ public class Peca {
 	public double getValorVenda() {
 		return valorVenda;
 	}
+	public void setQuantidadeEstoque(int quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+	
 }

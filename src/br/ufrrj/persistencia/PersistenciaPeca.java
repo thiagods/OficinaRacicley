@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrrj.dominio.Carro;
 import br.ufrrj.dominio.Endereco;
 import br.ufrrj.dominio.Fornecedor;
+import br.ufrrj.dominio.Peca;
 
 public class PersistenciaPeca {
 	private ConexaoBD c;
@@ -46,7 +48,7 @@ public class PersistenciaPeca {
 	}
 	// ISSO EH LISTAR FORNECEDOR E NAO PECA
 	
-	public ArrayList<Fornecedor> listarFornecedores(){
+	public ArrayList<Peca> listarPecas(){
 		Fornecedor f;
 		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 		abrirConexao();
@@ -58,11 +60,11 @@ public class PersistenciaPeca {
 			resultset = ps.executeQuery();
 			
 			while(resultset.next()){
-				Endereco end = persistenciaEndereco.recuperarEndereco(resultset.getInt("id_endereco"));
-				f = new Fornecedor(resultset.getInt("id"), resultset.getString("telefone"), resultset.getString("nome_vendedor"), end);
-				fornecedores.add(f);
+//				Endereco end = persistenciaEndereco.recuperarEndereco(resultset.getInt("id_endereco"));
+//				f = new Fornecedor(resultset.getInt("id"), resultset.getString("telefone"), resultset.getString("nome_vendedor"), end);
+//				fornecedores.add(f);
 			}
-			return fornecedores;
+			return null;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fecharConexao();
@@ -71,5 +73,33 @@ public class PersistenciaPeca {
 		
 		return null;
 	}
+	
+	
+	public Peca recuperarPeca(Integer idPeca){
+		Peca peca = null;
+		abrirConexao();
+		ResultSet rs;
+		String sql = "select * from peca where id = ?";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setInt(1, idPeca);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				peca = new Peca(rs.getString("codigo"), rs.getString("categoria"), rs.getString("descricao"), rs.getString("localizacao"), rs.getInt("quantidade_estoque"), rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
+			}
+			fecharConexao();
+			return peca;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 	
 }
