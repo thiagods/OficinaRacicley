@@ -3,14 +3,14 @@ package br.ufrrj.dominio;
 public class Peca {
 	
 	private String codigo;
-	private String categoria;
+	private CategoriaPeca categoria;
 	private String descricao;
 	private String localizacao;
 	private int quantidadeEstoque;
 	private double valorCompra;
 	private double valorVenda;
 	
-	public Peca(String codigo, String categoria, String descricao,
+	public Peca(String codigo, CategoriaPeca categoria, String descricao,
 			String localizacao, int quantidadeEstoque, double valorCompra,
 			double valorVenda) {
 		super();
@@ -25,7 +25,7 @@ public class Peca {
 	public String getCodigo() {
 		return codigo;
 	}
-	public String getCategoria() {
+	public CategoriaPeca getCategoria() {
 		return categoria;
 	}
 	public String getDescricao() {
@@ -43,8 +43,4 @@ public class Peca {
 	public double getValorVenda() {
 		return valorVenda;
 	}
-	public void setQuantidadeEstoque(int quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
-	}
-	
 }
