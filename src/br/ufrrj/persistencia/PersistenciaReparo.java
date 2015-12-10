@@ -35,10 +35,11 @@ public class PersistenciaReparo {
 			ps.setDouble(4, valorMaoDeObra);
 			ps.execute();
 			rs = ps.getGeneratedKeys();
-			fecharConexao();
+//			fecharConexao();
 			while(rs.next()){
 				id = rs.getInt(1);
 			}
+			fecharConexao();
 			return id;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

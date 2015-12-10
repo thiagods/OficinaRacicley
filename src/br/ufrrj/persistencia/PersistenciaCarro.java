@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrrj.dominio.Carro;
-import br.ufrrj.dominio.Fabricante;
 
 public class PersistenciaCarro {
 	private ConexaoBD c;

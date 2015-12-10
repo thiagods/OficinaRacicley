@@ -1,5 +1,7 @@
 package br.ufrrj.controladores;
 
+import java.util.ArrayList;
+
 import br.ufrrj.dominio.Endereco;
 import br.ufrrj.dominio.Fornecedor;
 import br.ufrrj.persistencia.PersistenciaEndereco;
@@ -14,6 +16,11 @@ public class ControladorFornecedor {
 		//O metodo adicionarEndereco retorna o id gerado automaticamente
 		idEndereco = persistenciaEndereco.adicionarEndereco(end.getNumero(), end.getLogradouro(), end.getComplemento(), end.getBairro(), end.getCidade(), end.getUf(), end.getCep());
 		persistenciaFornecedor.adicionarFornecedor(f.getTelefone(), f.getNomeVendedor(), idEndereco);
+	}
+	
+	public ArrayList<Fornecedor> listarFornecedor(){
+		
+		return persistenciaFornecedor.listarFornecedores();
 	}
 	
 }
