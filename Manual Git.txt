@@ -9,4 +9,4 @@ git status -- Verifica as mudanças realizadas.
 git commit -m "comentario" -- Adiciona o comentário(Necessário).
 git push -- Manda as modificações pro git.
 git push origin master -- Manda as modificações pro git Master.
-
+git checkout 1.0 -- Muda para o branch 1.0 
