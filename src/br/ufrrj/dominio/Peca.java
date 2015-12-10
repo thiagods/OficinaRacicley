@@ -7,9 +7,21 @@ public class Peca {
 	private String descricao;
 	private String localizacao;
 	private int quantidadeEstoque;
-	private int valorCompra;
-	private int valorVenda;
+	private double valorCompra;
+	private double valorVenda;
 	
+	public Peca(String codigo, String categoria, String descricao,
+			String localizacao, int quantidadeEstoque, double valorCompra,
+			double valorVenda) {
+		super();
+		this.codigo = codigo;
+		this.categoria = categoria;
+		this.descricao = descricao;
+		this.localizacao = localizacao;
+		this.quantidadeEstoque = quantidadeEstoque;
+		this.valorCompra = valorCompra;
+		this.valorVenda = valorVenda;
+	}
 	public String getCodigo() {
 		return codigo;
 	}
@@ -25,10 +37,10 @@ public class Peca {
 	public int getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
-	public int getValorCompra() {
+	public double getValorCompra() {
 		return valorCompra;
 	}
-	public int getValorVenda() {
+	public double getValorVenda() {
 		return valorVenda;
 	}
 }

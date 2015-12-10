@@ -15,7 +15,6 @@ public class CadastrarFornecedor {
 		String nomeVendedor;
 		Endereco endereco;
 		
-		
 		Integer numero;
 		String logradouro;
 		String complemento;
