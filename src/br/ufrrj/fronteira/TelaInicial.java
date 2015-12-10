@@ -7,7 +7,7 @@ public class TelaInicial {
 //		CadastrarFabricante.cadastrar();
 //		CadastrarCliente.cadastrar();
 //		BuscarCliente.buscar();
-		CadastrarFornecedor.cadastrar();
+//		CadastrarFornecedor.cadastrar();
 //		CadastrarReparo.cadastrar();
 	}
 }
