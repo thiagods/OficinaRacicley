@@ -46,3 +46,56 @@ insert into estoque (codigo, quantidade) values(?,?) [42122-187]
 	at br.ufrrj.controladores.ControladorPeca.cadastrarPeca(ControladorPeca.java:15)
 	at br.ufrrj.fronteira.CadastrarPeca.cadastrar(CadastrarPeca.java:60)
 	at br.ufrrj.fronteira.TelaInicial.main(TelaInicial.java:14)
+12-11 15:49:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERVICO" not found; SQL statement:
+drop table servico [42102-187]
+12-11 15:49:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "VALORMAODEOBRA"; SQL statement:
+create table servico(id INT auto_increment NOT NULL, data DATE, DOUBLE valorMaoDeObra, DOUBLE orcamento ); [50004-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4000)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:3863)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:5771)
+	at org.h2.command.Parser.parseCreate(Parser.java:4159)
+	at org.h2.command.Parser.parsePrepared(Parser.java:350)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at br.ufrrj.persistencia.ConexaoBD.executar(ConexaoBD.java:109)
+	at br.ufrrj.persistencia.Principal.novaGenese(Principal.java:40)
+	at br.ufrrj.persistencia.Principal.main(Principal.java:48)
+12-11 15:49:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERVICO" not found; SQL statement:
+drop table servico [42102-187]
+12-11 15:49:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Unknown data type: "VALORMAODEOBRA"; SQL statement:
+create table servico(id INT auto_increment NOT NULL, data DATE, DOUBLE valorMaoDeObra, DOUBLE orcamento ); [50004-187]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:4000)
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:3863)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:5771)
+	at org.h2.command.Parser.parseCreate(Parser.java:4159)
+	at org.h2.command.Parser.parsePrepared(Parser.java:350)
+	at org.h2.command.Parser.parse(Parser.java:305)
+	at org.h2.command.Parser.parse(Parser.java:277)
+	at org.h2.command.Parser.prepareCommand(Parser.java:242)
+	at org.h2.engine.Session.prepareLocal(Session.java:461)
+	at org.h2.engine.Session.prepareCommand(Session.java:403)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1189)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:170)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at br.ufrrj.persistencia.ConexaoBD.executar(ConexaoBD.java:109)
+	at br.ufrrj.persistencia.Principal.novaGenese(Principal.java:40)
+	at br.ufrrj.persistencia.Principal.main(Principal.java:48)
+12-11 15:50:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERVICO" not found; SQL statement:
+drop table servico [42102-187]
