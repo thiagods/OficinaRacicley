@@ -15,7 +15,6 @@ import br.ufrrj.dominio.Peca;
 public class PersistenciaPeca {
 	private ConexaoBD c;
 	private Connection conexao;
-	PersistenciaPeca persistenciaPeca = new PersistenciaPeca();
 	
 	private void abrirConexao(){
 		c = new ConexaoBD();
@@ -28,7 +27,7 @@ public class PersistenciaPeca {
 	
 	public void adicionarPeca(String codigo, String categoria, String descricao,String localizacao,int quantidade_estoque,double valor_compra,double valor_venda){
 		abrirConexao();
-		String sql = "insert into fornecedor (codigo, categoria, descricao,localizacao, quantidade_estoque, valor_compra, valor_venda) values(?,?,?,?,?,?,?)";
+		String sql = "insert into peca (codigo, categoria, descricao,localizacao, quantidade_estoque, valor_compra, valor_venda) values(?,?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);

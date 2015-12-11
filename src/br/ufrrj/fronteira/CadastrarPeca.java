@@ -2,6 +2,7 @@ package br.ufrrj.fronteira;
 
 import java.util.Scanner;
 
+import br.ufrrj.controladores.ControladorPeca;
 import br.ufrrj.dominio.CategoriaPeca;
 import br.ufrrj.dominio.Peca;
 
@@ -10,6 +11,7 @@ public class CadastrarPeca {
 	public static void cadastrar(){
 		
 		Peca p;
+		ControladorPeca controladorPeca = new ControladorPeca();
 		
 		String codigo;	
 		String descricao;
@@ -43,14 +45,15 @@ public class CadastrarPeca {
 		
 		
 		p = new Peca(codigo, categoria, descricao, localizacao, quantidadeEstoque, valorCompra, valorVenda);
-				
+		controladorPeca.cadastrarPeca(p);
+		
 		teclado.close();
 		teclado2.close();
 	}
 	
 	private static CategoriaPeca selecionaCategoria(int selecionado) {
 		
-		CategoriaPeca categoriaPeca;
+		CategoriaPeca categoriaPeca = null;
 		
 		if(selecionado == 1){
 			categoriaPeca = CategoriaPeca.MOTOR;
@@ -65,6 +68,6 @@ public class CadastrarPeca {
 			System.err.println("Erro ao selecionar");
 			
 		}
-		return null;		
+		return categoriaPeca;		
 	}
 }
