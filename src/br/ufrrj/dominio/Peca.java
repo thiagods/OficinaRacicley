@@ -9,10 +9,11 @@ public class Peca {
 	private int quantidadeEstoque;
 	private double valorCompra;
 	private double valorVenda;
+	private Fabricante fabricante;
 	
 	public Peca(String codigo, CategoriaPeca categoria, String descricao,
 			String localizacao, int quantidadeEstoque, double valorCompra,
-			double valorVenda) {
+			double valorVenda, Fabricante fabricante) {
 		super();
 		this.codigo = codigo;
 		this.categoria = categoria;
@@ -21,6 +22,7 @@ public class Peca {
 		this.quantidadeEstoque = quantidadeEstoque;
 		this.valorCompra = valorCompra;
 		this.valorVenda = valorVenda;
+		this.fabricante = fabricante;
 	}
 	public String getCodigo() {
 		return codigo;
@@ -46,5 +48,9 @@ public class Peca {
 	public void setQuantidadeEstoque(int quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+	
 	
 }

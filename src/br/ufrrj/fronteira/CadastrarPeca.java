@@ -1,9 +1,12 @@
 package br.ufrrj.fronteira;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import br.ufrrj.controladores.ControladorFabricante;
 import br.ufrrj.controladores.ControladorPeca;
 import br.ufrrj.dominio.CategoriaPeca;
+import br.ufrrj.dominio.Fabricante;
 import br.ufrrj.dominio.Peca;
 
 public class CadastrarPeca {
@@ -11,7 +14,9 @@ public class CadastrarPeca {
 	public static void cadastrar(){
 		
 		Peca p;
+		ArrayList<Fabricante> fabricantes = new ArrayList<Fabricante>();
 		ControladorPeca controladorPeca = new ControladorPeca();
+		ControladorFabricante controladorFabricante = new ControladorFabricante();
 		
 		String codigo;	
 		String descricao;
@@ -21,6 +26,7 @@ public class CadastrarPeca {
 		int quantidadeEstoque;
 		double valorCompra;
 		double valorVenda;
+		Integer idFabricante;
 		
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);
@@ -29,7 +35,7 @@ public class CadastrarPeca {
 		codigo = teclado.next();
 		System.out.println("Entre com a categoria:");
 		System.out.println("1 - MOTOR\n2 - LANTERNAGEM\n3 - ELETRICO");
-		selecionado = teclado.nextInt();
+		selecionado = teclado2.nextInt();
 		categoria = selecionaCategoria(selecionado);
 		System.out.println("Entre com a descricao:");
 		descricao = teclado.next();
@@ -37,14 +43,20 @@ public class CadastrarPeca {
 		localizacao = teclado.next();
 
 		System.out.println("Entre com a quantidade:");
-		quantidadeEstoque = teclado.nextInt();
+		quantidadeEstoque = teclado2.nextInt();
 		System.out.println("Entre com o valor de compra:");
-		valorCompra = teclado.nextInt();
+		valorCompra = teclado2.nextInt();
 		System.out.println("Entre com o valor de venda:");
-		valorVenda = teclado.nextDouble();
+		valorVenda = teclado2.nextDouble();
 		
+		fabricantes = controladorFabricante.listarFabricantes();
+		System.out.println("Fabricante:");
+		for(Fabricante f : fabricantes){
+			System.out.println(f.getId()+" - "+ f.getNome());
+		}
+		idFabricante = teclado2.nextInt();
 		
-		p = new Peca(codigo, categoria, descricao, localizacao, quantidadeEstoque, valorCompra, valorVenda);
+		p = new Peca(codigo, categoria, descricao, localizacao, quantidadeEstoque, valorCompra, valorVenda,new Fabricante(idFabricante, null, null));
 		controladorPeca.cadastrarPeca(p);
 		
 		teclado.close();

@@ -11,6 +11,6 @@ public class TelaInicial {
 //		BuscarCliente.buscar();
 //		CadastrarFornecedor.cadastrar();
 //		CadastrarReparo.cadastrar();
-		CadastrarPeca.cadastrar();
+//		CadastrarPeca.cadastrar();
 	}
 }

@@ -24,8 +24,8 @@ public class PersistenciaEstoque {
 		c.fecharConexao();
 	}
 	
-	public Estoque recuperaEstoque(){
-		Estoque est;
+	public Estoque recuperaEstoque(Estoque estoque){
+//		Estoque est;
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		abrirConexao();
 		ResultSet resultset;
@@ -37,13 +37,13 @@ public class PersistenciaEstoque {
 			
 			while(resultset.next()){
 //				Peca = new Peca(resultset.getInt("id"), resultset.getString("telefone"), resultset.getString("nome_vendedor"), end);
-				Peca peca = persistenciaPeca.recuperarPeca(resultset.getInt("id_peca"));
+				Peca peca = persistenciaPeca.recuperarPeca(resultset.getString("codigo_peca"));
 				peca.setQuantidadeEstoque(resultset.getInt("quantidade"));
 				pecas.add(peca);
 			}
-			est = new Estoque();
-			est.setPecasNoEstoque(pecas);
-			return est;
+//			est = new Estoque();
+			estoque.setPecasNoEstoque(pecas);
+			return estoque;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fecharConexao();
@@ -55,7 +55,7 @@ public class PersistenciaEstoque {
 
 	public void adicionarPecaNoEstoque(String codigo, Integer qtd) {
 		abrirConexao();
-		String sql = "insert into estoque (codigo, quantidade) values(?,?)";
+		String sql = "insert into estoque (codigo_peca, quantidade) values(?,?)";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);

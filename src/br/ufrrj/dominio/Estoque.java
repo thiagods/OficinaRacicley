@@ -5,16 +5,14 @@ import java.util.ArrayList;
 import br.ufrrj.controladores.ControladorEstoque;
 
 public class Estoque {
-	private ControladorEstoque controladorEstoque = new ControladorEstoque();
-	private Estoque estoque = controladorEstoque.recuperarEstoque();
+	
+	private static Estoque estoque;
 	
 	private ArrayList<Peca> pecasNoEstoque;
 	
 	
 
-	public Estoque() {
-		if(estoque == null)
-			estoque = new Estoque();
+	private Estoque() {
 	}
 
 	public Estoque(Estoque estoque, ArrayList<Peca> pecasNoEstoque) {
@@ -26,7 +24,11 @@ public class Estoque {
 		return pecasNoEstoque;
 	}
 	
-	public Estoque getEstoque(){
+	public static synchronized Estoque getEstoque(){
+		if(estoque == null){
+			ControladorEstoque controladorEstoque = new ControladorEstoque();
+			estoque = controladorEstoque.recuperarEstoque(new Estoque());
+		}
 		return estoque;
 	}
 	public void setPecasNoEstoque(ArrayList<Peca> pecas){

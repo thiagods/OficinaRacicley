@@ -7,8 +7,8 @@ public class ControladorEstoque {
 	
 	PersistenciaEstoque persistenciaEstoque = new PersistenciaEstoque();
 	
-	public Estoque recuperarEstoque(){
-		return persistenciaEstoque.recuperaEstoque();
+	public Estoque recuperarEstoque(Estoque estoque){
+		return persistenciaEstoque.recuperaEstoque(estoque);
 	}
 
 	public void adicionarPecaNoEstoque(String codigo, Integer qtd) {

@@ -11,7 +11,7 @@ public class ControladorPeca {
 	ControladorEstoque controladorEstoque = new ControladorEstoque();
 	
 	public void cadastrarPeca(Peca p){
-		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().getNome(), p.getDescricao(), p.getLocalizacao(), p.getQuantidadeEstoque(), p.getValorCompra(), p.getValorVenda());
+		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().getNome(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
 		controladorEstoque.adicionarPecaNoEstoque(p.getCodigo(),p.getQuantidadeEstoque());
 	}
 }

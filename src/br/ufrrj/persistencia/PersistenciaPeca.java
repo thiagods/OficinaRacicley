@@ -9,12 +9,14 @@ import java.util.ArrayList;
 import br.ufrrj.dominio.Carro;
 import br.ufrrj.dominio.CategoriaPeca;
 import br.ufrrj.dominio.Endereco;
+import br.ufrrj.dominio.Fabricante;
 import br.ufrrj.dominio.Fornecedor;
 import br.ufrrj.dominio.Peca;
 
 public class PersistenciaPeca {
 	private ConexaoBD c;
 	private Connection conexao;
+	PersistenciaFabricante persistenciaFabricante = new PersistenciaFabricante();
 	
 	private void abrirConexao(){
 		c = new ConexaoBD();
@@ -25,9 +27,9 @@ public class PersistenciaPeca {
 		c.fecharConexao();
 	}
 	
-	public void adicionarPeca(String codigo, String categoria, String descricao,String localizacao,int quantidade_estoque,double valor_compra,double valor_venda){
+	public void adicionarPeca(String codigo, String categoria, String descricao,String localizacao,double valor_compra,double valor_venda, Integer idFabricante){
 		abrirConexao();
-		String sql = "insert into peca (codigo, categoria, descricao,localizacao, quantidade_estoque, valor_compra, valor_venda) values(?,?,?,?,?,?,?)";
+		String sql = "insert into peca (codigo, categoria, descricao,localizacao, valor_compra, valor_venda, id_fabricante) values(?,?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);
@@ -35,9 +37,9 @@ public class PersistenciaPeca {
 			ps.setString(2, categoria);
 			ps.setString(3, descricao);
 			ps.setString(4,localizacao);
-			ps.setInt(5,quantidade_estoque);
-			ps.setDouble(6, valor_compra);
-			ps.setDouble(7, valor_venda);
+			ps.setDouble(5, valor_compra);
+			ps.setDouble(6, valor_venda);
+			ps.setInt(7, idFabricante);
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -75,19 +77,20 @@ public class PersistenciaPeca {
 	}
 	
 	
-	public Peca recuperarPeca(Integer idPeca){
+	public Peca recuperarPeca(String codigo){
 		Peca peca = null;
 		abrirConexao();
 		ResultSet rs;
-		String sql = "select * from peca where id = ?";
+		String sql = "select * from peca where codigo = ?";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);
-			ps.setInt(1, idPeca);
+			ps.setString(1, codigo);
 			rs = ps.executeQuery();
 			
 			while(rs.next()){
-				peca = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), -1, rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
+				Fabricante f = persistenciaFabricante.recuperarFabricante(rs.getInt("id_fabricante"));
+				peca = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), -1, rs.getDouble("valor_compra"), rs.getDouble("valor_venda"), f);
 			}
 			fecharConexao();
 			return peca;
