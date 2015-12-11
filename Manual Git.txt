@@ -10,3 +10,9 @@ git commit -m "comentario" -- Adiciona o comentário(Necessário).
 git push -- Manda as modificações pro git.
 git push origin master -- Manda as modificações pro git Master.
 git checkout 1.0 -- Muda para o branch 1.0 
+
+Para fazer Merge, primeiro você volta para o branch master, e depois faça o merge com o branch desejado. 
+git checkout master
+git merge 1.0
+git push
+
