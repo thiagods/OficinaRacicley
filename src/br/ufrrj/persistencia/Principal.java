@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import br.ufrrj.dominio.CategoriaPeca;
 import br.ufrrj.dominio.Estoque;
 import br.ufrrj.dominio.Fabricante;
+import br.ufrrj.dominio.Pagamento;
 import br.ufrrj.dominio.Peca;
+import br.ufrrj.dominio.TipoPagamento;
 
 public class Principal {
 	
@@ -50,6 +52,7 @@ public class Principal {
 //	    PersistenciaFabricante persistenciaFabricante = new PersistenciaFabricante();
 //	    ArrayList<Fabricante> fabricantes = persistenciaFabricante.listarFabricantes();
 	    
+	    Pagamento pag = new Pagamento(TipoPagamento.CREDITO, 500, 3);
 	    
 	    //ESTOQUE
 //	    Estoque est = Estoque.getEstoque();

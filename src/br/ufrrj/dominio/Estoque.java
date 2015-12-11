@@ -9,8 +9,6 @@ public class Estoque {
 	private static Estoque estoque;
 	
 	private ArrayList<Peca> pecasNoEstoque;
-	
-	
 
 	private Estoque() {
 	}
