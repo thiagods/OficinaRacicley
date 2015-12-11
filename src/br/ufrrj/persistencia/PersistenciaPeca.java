@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrrj.dominio.Carro;
+import br.ufrrj.dominio.CategoriaPeca;
 import br.ufrrj.dominio.Endereco;
 import br.ufrrj.dominio.Fornecedor;
 import br.ufrrj.dominio.Peca;
@@ -46,14 +47,14 @@ public class PersistenciaPeca {
 		}	
 		fecharConexao();
 	}
-	// ISSO EH LISTAR FORNECEDOR E NAO PECA
 	
+	//TODO: Ainda nao ta funcionando. Tem que decidir os detalhes do estoque ainda (tirar qtdpeca do banco)
 	public ArrayList<Peca> listarPecas(){
-		Fornecedor f;
-		ArrayList<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+		Peca p;
+		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		abrirConexao();
 		ResultSet resultset;
-		String sql = "select * from fornecedor";
+		String sql = "select * from peca";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);
@@ -87,7 +88,7 @@ public class PersistenciaPeca {
 			rs = ps.executeQuery();
 			
 			while(rs.next()){
-				peca = new Peca(rs.getString("codigo"), rs.getString("categoria"), rs.getString("descricao"), rs.getString("localizacao"), rs.getInt("quantidade_estoque"), rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
+				peca = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), rs.getInt("quantidade_estoque"), rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
 			}
 			fecharConexao();
 			return peca;
