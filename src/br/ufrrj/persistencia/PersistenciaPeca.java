@@ -87,7 +87,7 @@ public class PersistenciaPeca {
 			rs = ps.executeQuery();
 			
 			while(rs.next()){
-				peca = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), rs.getInt("quantidade_estoque"), rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
+				peca = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), -1, rs.getDouble("valor_compra"), rs.getDouble("valor_venda"));
 			}
 			fecharConexao();
 			return peca;

@@ -24,15 +24,15 @@ public class Principal {
 		System.out.println("cr fabri:"+c.executar("create table fabricante(id INT auto_increment PRIMARY KEY NOT NULL, nome VARCHAR(255), telefone VARCHAR(255))"));
 		System.out.println("cr forne:"+c.executar("create table fornecedor(id INT auto_increment NOT NULL, telefone VARCHAR(255), nome_vendedor VARCHAR(255), id_endereco INT NOT NULL, FOREIGN KEY (id_endereco) references endereco(id))"));
 		System.out.println("cr reparo:"+c.executar("create table reparo(id INT auto_increment NOT NULL, descricao_breve VARCHAR(255), descricao_detalhada VARCHAR(255), tempo_medio_execucao VARCHAR(255),valor_mao_de_obra DOUBLE NOT NULL);"));
-		System.out.println("cr peca:"+c.executar("create table peca(id INT auto_increment NOT NULL, codigo VARCHAR(255), categoria VARCHAR(255), descricao VARCHAR(255), localizacao VARCHAR(255), quantidade_estoque INT NOT NULL, valor_compra DOUBLE NOT NULL, valor_venda DOUBLE NOT NULL);"));
-		System.out.println("cr estoque:"+c.executar("create table estoque(id_peca INT NOT NULL, quantidade INT, FOREIGN KEY (id_peca) REFERENCES peca(id) );"));
+		System.out.println("cr peca:"+c.executar("create table peca(codigo VARCHAR(255) PRIMARY KEY NOT NULL, categoria VARCHAR(255), descricao VARCHAR(255), localizacao VARCHAR(255), valor_compra DOUBLE NOT NULL, valor_venda DOUBLE NOT NULL);"));
+		System.out.println("cr estoque:"+c.executar("create table estoque(codigo_peca VARCHAR(255) NOT NULL, quantidade INT, FOREIGN KEY (codigo_peca) REFERENCES peca(codigo) );"));
 	}
 	
 	public static void main(String[] args) throws SQLException {
 		ConexaoBD c = new ConexaoBD();
 		ResultSet result;
 		c.abrirConexao();
-//		novaGenese(c);
+		novaGenese(c);
 		//testando...
 //		CadastrarFabricante.cadastrar();
 //		System.out.println("criou: "+c.executar("create table candango(id INT AUTO_INCREMENT PRIMARY KEY NOT NULL, nome VARCHAR(255));"));

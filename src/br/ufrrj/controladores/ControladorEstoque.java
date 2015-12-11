@@ -10,5 +10,11 @@ public class ControladorEstoque {
 	public Estoque recuperarEstoque(){
 		return persistenciaEstoque.recuperaEstoque();
 	}
+
+	public void adicionarPecaNoEstoque(String codigo, Integer qtd) {
+		persistenciaEstoque.adicionarPecaNoEstoque(codigo, qtd);
+	}
+	
+	
 	
 }

@@ -52,4 +52,23 @@ public class PersistenciaEstoque {
 		
 		return null;
 	}
+
+	public void adicionarPecaNoEstoque(String codigo, Integer qtd) {
+		abrirConexao();
+		String sql = "insert into estoque (codigo, quantidade) values(?,?)";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setString(1, codigo);
+			ps.setInt(2, qtd);
+			
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}	
+		fecharConexao();
+		
+	}
 }
