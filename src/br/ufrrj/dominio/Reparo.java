@@ -2,6 +2,7 @@ package br.ufrrj.dominio;
 
 public class Reparo {
 	
+	private Integer id;
 	private String descricaoBreve;
 	private String descricaoDetalhada;
 	private String tempoMedioDeExecucao;
@@ -28,4 +29,14 @@ public class Reparo {
 	public Double getValorMaoDeObra() {
 		return valorMaoDeObra;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 }

@@ -22,6 +22,7 @@ public class Principal {
 		System.out.println("dropou reparo:"+c.executar("drop table reparo"));
 		System.out.println("dropou peca:"+c.executar("drop table peca"));
 		System.out.println("dropou estoque:"+c.executar("drop table estoque"));
+		System.out.println("dropou servico:"+c.executar("drop table servico"));
 
 		
 		//eu criei essas 4 tabelas.
@@ -34,6 +35,7 @@ public class Principal {
 		System.out.println("cr reparo:"+c.executar("create table reparo(id INT auto_increment NOT NULL, descricao_breve VARCHAR(255), descricao_detalhada VARCHAR(255), tempo_medio_execucao VARCHAR(255),valor_mao_de_obra DOUBLE NOT NULL);"));
 		System.out.println("cr peca:"+c.executar("create table peca(codigo VARCHAR(255) PRIMARY KEY NOT NULL, categoria VARCHAR(255), descricao VARCHAR(255), localizacao VARCHAR(255), valor_compra DOUBLE NOT NULL, valor_venda DOUBLE NOT NULL, id_fabricante INT NOT NULL, FOREIGN KEY (id_fabricante) REFERENCES fabricante (id));"));
 		System.out.println("cr estoque:"+c.executar("create table estoque(codigo_peca VARCHAR(255) NOT NULL, quantidade INT, FOREIGN KEY (codigo_peca) REFERENCES peca(codigo) );"));
+		System.out.println("cr servico:"+c.executar("create table servico( );"));
 	}
 	
 	public static void main(String[] args) throws SQLException {
@@ -52,7 +54,7 @@ public class Principal {
 //	    PersistenciaFabricante persistenciaFabricante = new PersistenciaFabricante();
 //	    ArrayList<Fabricante> fabricantes = persistenciaFabricante.listarFabricantes();
 	    
-	    Pagamento pag = new Pagamento(TipoPagamento.CREDITO, 500, 3);
+	    //Pagamento pag = new Pagamento(TipoPagamento.CREDITO, 500, 3);
 	    
 	    //ESTOQUE
 //	    Estoque est = Estoque.getEstoque();
