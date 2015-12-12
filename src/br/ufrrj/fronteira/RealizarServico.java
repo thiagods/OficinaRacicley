@@ -6,17 +6,21 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import javax.sql.rowset.serial.SerialArray;
+
 import br.ufrrj.controladores.ControladorPeca;
 import br.ufrrj.controladores.ControladorReparo;
 import br.ufrrj.controladores.ControladorServico;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
+import br.ufrrj.dominio.Servico;
 
 public class RealizarServico {
 	public static void realizarServico(){
 		//TODO: Tem que fazer essa tela
 		ControladorServico controladorServico = new ControladorServico();
 		
+		Servico servico;
 		Date data = new Date();
 		Calendar c = new GregorianCalendar();
 		int dia;
@@ -26,7 +30,7 @@ public class RealizarServico {
 		
 		ArrayList<Reparo> reparosRealizados = new ArrayList<Reparo>();
 		ArrayList<Peca> pecasTrocadas = new ArrayList<Peca>();
-		ArrayList<Peca> pecasPossiveis = new ArrayList<Peca>(); 
+//		ArrayList<Peca> pecasPossiveis = new ArrayList<Peca>(); 
 		double valorMaoDeObra;
 		
 		Scanner teclado2 = new Scanner(System.in);
@@ -42,10 +46,14 @@ public class RealizarServico {
 		reparosRealizados = selecionarReparos();
 		pecasTrocadas = selecionarPecas();
 		
-		System.out.println("Entre com o valor da mao de obra:");
-		valorMaoDeObra = teclado2.nextDouble();
 		
-		controladorServico.realizarServico(data, reparosRealizados, pecasTrocadas, valorMaoDeObra);
+		servico = new Servico(null, data, reparosRealizados, pecasTrocadas);
+		
+		System.out.println("Valor do orçamento: R$"+servico.getOrcamento());
+		System.out.println("Deseja aprovar o orcamento?\n1 - SIM\n2 - NAO");
+		if(teclado2.nextInt() == 1){
+			controladorServico.realizarServico(data, reparosRealizados, pecasTrocadas);
+		}
 		
 		teclado2.close();
 	}

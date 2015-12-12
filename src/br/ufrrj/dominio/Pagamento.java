@@ -5,12 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Pagamento {
-	
+	private Integer id;
 	private TipoPagamento tipoPagamento;
 	private double valorTotal;
 	private ArrayList<Parcela> parcelas;
-	
-	
 
 	public Pagamento(TipoPagamento tipoPagamento, double valorTotal,
 			Integer nParcelas) {
@@ -29,14 +27,39 @@ public class Pagamento {
 		return valorTotal;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public ArrayList<Parcela> getParcelas() {
 		return parcelas;
 	}
 	
+	public boolean pago(){
+		for(Parcela p : parcelas){
+			if(!p.isPaga())
+				return false;
+		}
+		return true;
+	}
+	
+	public void pagar(){
+		ArrayList<Parcela> parcelasPagas = new ArrayList<Parcela>();
+		for(Parcela p : parcelas){
+			p.pagar();
+			parcelasPagas.add(p);
+		}
+	}
+	
+	
+	
 	public void criarParcelas(Integer nParcelas){
 		double valorParcela = valorTotal/nParcelas;
 		Calendar dataAtual = Calendar.getInstance();
-		
 		
 		for(int i = 0; i<nParcelas; i++){
 			Date dataVencimento = dataAtual.getTime();
@@ -44,10 +67,6 @@ public class Pagamento {
 			parcelas.add(p);
 			dataAtual.roll(Calendar.MONTH, 1);
 		}
-	}
-	public Calendar pulaMes(Calendar dataAtual){
-		dataAtual.roll(Calendar.MONTH, 1);
-		return dataAtual;
 	}
 	
 }

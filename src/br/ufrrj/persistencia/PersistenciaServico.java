@@ -24,17 +24,16 @@ public class PersistenciaServico {
 		c.fecharConexao();
 	}
 
-	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, double valorMaoDeObra) {
+	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas) {
 		abrirConexao();
 		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		Integer idServico = null;
-		String sql = "insert into servico (data, valor_mao_de_obra) values(?,?)";
+		String sql = "insert into servico (data) values(?)";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
 			ps = conexao.prepareStatement(sql);
 			ps.setDate(1, dataSql);
-			ps.setDouble(2, valorMaoDeObra);
 			ps.execute();
 			
 			rs = ps.getGeneratedKeys();

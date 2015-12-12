@@ -3,6 +3,7 @@ package br.ufrrj.dominio;
 import java.util.Date;
 
 public class Parcela {
+	private Integer id;
 	private double valor;
 	private boolean paga;
 	private Date dataVencimento;
@@ -28,6 +29,14 @@ public class Parcela {
 	
 	public void pagar(){
 		this.paga = true;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 	

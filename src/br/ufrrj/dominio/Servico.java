@@ -9,18 +9,16 @@ public class Servico {
 	private Date data; 
 	private ArrayList<Reparo> reparosRealizados;
 	private ArrayList<Peca> pecasTrocadas;
-	private double valorMaoDeObra;
-	
-	
+	private Pagamento pagamento;
 	
 	public Servico(Integer id, Date data, ArrayList<Reparo> reparosRealizados,
-			ArrayList<Peca> pecasTrocadas, double valorMaoDeObra) {
+			ArrayList<Peca> pecasTrocadas) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.reparosRealizados = reparosRealizados;
 		this.pecasTrocadas = pecasTrocadas;
-		this.valorMaoDeObra = valorMaoDeObra;
+		
 	}
 	
 	public Date getData() {
@@ -32,9 +30,7 @@ public class Servico {
 	public ArrayList<Peca> getPecasTrocadas() {
 		return pecasTrocadas;
 	}
-	public double getValorMaoDeObra() {
-		return valorMaoDeObra;
-	}
+	
 	public double getOrcamento() {
 		double orcamento = 0;
 		for(Reparo r : reparosRealizados){
@@ -46,11 +42,23 @@ public class Servico {
 		
 		return orcamento;
 	}
+	
+	public double getValorMaoDeObra(){
+		double maoDeObra = 0;
+		
+		for(Reparo r : reparosRealizados){
+			maoDeObra += (r.getValorMaoDeObra()*r.getTempoMedioDeExecucao());
+		}
+		return maoDeObra;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+	public Pagamento getPagamento(){
+		return pagamento;
+	}
 }
