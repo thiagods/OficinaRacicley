@@ -25,6 +25,8 @@ public class Principal {
 //		System.out.println("dropou peca:"+c.executar("drop table peca"));
 //		System.out.println("dropou estoque:"+c.executar("drop table estoque"));
 //		System.out.println("dropou servico:"+c.executar("drop table servico"));
+//		System.out.println("dropou servico_reparo:"+c.executar("drop table servico_reparo"));
+//		System.out.println("dropou servico_reparo:"+c.executar("drop table servico_peca"));
 
 		
 		//eu criei essas 4 tabelas.
@@ -37,8 +39,10 @@ public class Principal {
 //		System.out.println("cr reparo:"+c.executar("create table reparo(id INT auto_increment NOT NULL, descricao_breve VARCHAR(255), descricao_detalhada VARCHAR(255), tempo_medio_execucao VARCHAR(255),valor_mao_de_obra DOUBLE NOT NULL);"));
 //		System.out.println("cr peca:"+c.executar("create table peca(codigo VARCHAR(255) PRIMARY KEY NOT NULL, categoria VARCHAR(255), descricao VARCHAR(255), localizacao VARCHAR(255), valor_compra DOUBLE NOT NULL, valor_venda DOUBLE NOT NULL, id_fabricante INT NOT NULL, FOREIGN KEY (id_fabricante) REFERENCES fabricante (id));"));
 //		System.out.println("cr estoque:"+c.executar("create table estoque(codigo_peca VARCHAR(255) NOT NULL, quantidade INT, FOREIGN KEY (codigo_peca) REFERENCES peca(codigo) );"));
-//		System.out.println("cr servico:"+c.executar("create table servico(id INT auto_increment NOT NULL, data DATE, valorMaoDeObra DOUBLE, orcamento DOUBLE);"));
-		//tem que criar uma tabela reparo_servico, peca_servico
+//		System.out.println("cr servico:"+c.executar("create table servico(id INT auto_increment NOT NULL, data DATE, valor_mao_de_obra DOUBLE, orcamento DOUBLE);"));
+//		System.out.println("cr servico_reparo:"+c.executar("create table servico_reparo(id_servico INT NOT NULL, id_reparo INT NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (id_reparo) REFERENCES reparo(id));"));
+//		System.out.println("cr servico_peca:"+c.executar("create table servico_peca(id_servico INT NOT NULL, codigo_peca VARCHAR(255) NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (codigo_peca) REFERENCES peca(codigo));"));
+		
 	}
 	
 	public static void main(String[] args) throws SQLException {
