@@ -5,10 +5,10 @@ public class Reparo {
 	private Integer id;
 	private String descricaoBreve;
 	private String descricaoDetalhada;
-	private String tempoMedioDeExecucao;
+	private double tempoMedioDeExecucao;
 	private Double valorMaoDeObra;	
 	
-	public Reparo(String descricaoBreve, String descricaoDetalhada, String tempoMedioDeExecucao,
+	public Reparo(String descricaoBreve, String descricaoDetalhada, double tempoMedioDeExecucao,
 			Double valorMaoDeObra) {
 		super();
 		this.descricaoBreve = descricaoBreve;
@@ -23,7 +23,7 @@ public class Reparo {
 	public String getDescricaoDetalhada() {
 		return descricaoDetalhada;
 	}
-	public String getTempoMedioDeExecucao() {
+	public double getTempoMedioDeExecucao() {
 		return tempoMedioDeExecucao;
 	}
 	public Double getValorMaoDeObra() {

@@ -54,19 +54,19 @@ public class PersistenciaPeca {
 		Peca p;
 		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		abrirConexao();
-		ResultSet resultset;
+		ResultSet rs;
 		String sql = "select * from peca";
 		PreparedStatement ps;
 		try {
 			ps = conexao.prepareStatement(sql);
-			resultset = ps.executeQuery();
+			rs = ps.executeQuery();
 			
-			while(resultset.next()){
-//				Endereco end = persistenciaEndereco.recuperarEndereco(resultset.getInt("id_endereco"));
-//				f = new Fornecedor(resultset.getInt("id"), resultset.getString("telefone"), resultset.getString("nome_vendedor"), end);
-//				fornecedores.add(f);
+			while(rs.next()){
+				Fabricante f = persistenciaFabricante.recuperarFabricante(rs.getInt("id_fabricante"));
+				p = new Peca(rs.getString("codigo"), CategoriaPeca.find(rs.getString("categoria")), rs.getString("descricao"), rs.getString("localizacao"), -1, rs.getDouble("valor_compra"), rs.getDouble("valor_venda"), f);
+				pecas.add(p);
 			}
-			return null;
+			return pecas;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fecharConexao();

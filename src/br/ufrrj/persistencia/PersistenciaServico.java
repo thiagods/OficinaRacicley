@@ -24,17 +24,17 @@ public class PersistenciaServico {
 		c.fecharConexao();
 	}
 
-	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, double valorMaoDeObra, double orcamento) {
+	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, double valorMaoDeObra) {
 		abrirConexao();
+		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		Integer idServico = null;
-		String sql = "insert into servico (data, valor_mao_de_obra, orcamento) values(?,?,?)";
+		String sql = "insert into servico (data, valor_mao_de_obra) values(?,?)";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
 			ps = conexao.prepareStatement(sql);
-			ps.setDate(1, (java.sql.Date)data);
+			ps.setDate(1, dataSql);
 			ps.setDouble(2, valorMaoDeObra);
-			ps.setDouble(3, orcamento);
 			ps.execute();
 			
 			rs = ps.getGeneratedKeys();
@@ -43,6 +43,7 @@ public class PersistenciaServico {
 			}
 			
 			adicionarServicoReparos(idServico, reparosRealizados);
+			adicionarServicoPecas(idServico, pecasTrocadas);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fecharConexao();

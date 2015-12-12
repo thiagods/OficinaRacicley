@@ -11,8 +11,10 @@ public class ControladorServico {
 	
 	PersistenciaServico persistenciaServico = new PersistenciaServico();
 	
-	public void cadastrarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, double valorMaoDeObra, double orcamento){
-		persistenciaServico.adicionarServico(data, reparosRealizados, pecasTrocadas, valorMaoDeObra, orcamento);
+	public void realizarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, double valorMaoDeObra){
+		//Aqui vai entrar mais coisa? Tipo, aqui ta so cadastrando, ne?
+		//O orcamento nao ta confirmado ainda nao, ne?
+		persistenciaServico.adicionarServico(data, reparosRealizados, pecasTrocadas, valorMaoDeObra);
 	}
 	
 }

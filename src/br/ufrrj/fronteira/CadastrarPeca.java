@@ -32,15 +32,15 @@ public class CadastrarPeca {
 		Scanner teclado2 = new Scanner(System.in);
 		
 		System.out.println("Entre com o codigo:");
-		codigo = teclado.next();
+		codigo = teclado.nextLine();
 		System.out.println("Entre com a categoria:");
 		System.out.println("1 - MOTOR\n2 - LANTERNAGEM\n3 - ELETRICO");
 		selecionado = teclado2.nextInt();
 		categoria = selecionaCategoria(selecionado);
 		System.out.println("Entre com a descricao:");
-		descricao = teclado.next();
+		descricao = teclado.nextLine();
 		System.out.println("Entre com a localizacao:");
-		localizacao = teclado.next();
+		localizacao = teclado.nextLine();
 
 		System.out.println("Entre com a quantidade:");
 		quantidadeEstoque = teclado2.nextInt();

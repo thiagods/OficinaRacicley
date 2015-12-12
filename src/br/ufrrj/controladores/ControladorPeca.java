@@ -1,7 +1,7 @@
 package br.ufrrj.controladores;
 
-import br.ufrrj.dominio.Endereco;
-import br.ufrrj.dominio.Fornecedor;
+import java.util.ArrayList;
+
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.persistencia.PersistenciaPeca;
 
@@ -13,5 +13,9 @@ public class ControladorPeca {
 	public void cadastrarPeca(Peca p){
 		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().getNome(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
 		controladorEstoque.adicionarPecaNoEstoque(p.getCodigo(),p.getQuantidadeEstoque());
+	}
+	
+	public ArrayList<Peca> listarPecas(){
+		return persistenciaPeca.listarPecas();
 	}
 }

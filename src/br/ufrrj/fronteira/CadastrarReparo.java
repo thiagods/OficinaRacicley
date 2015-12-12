@@ -12,7 +12,7 @@ public class CadastrarReparo {
 		ControladorReparo controladorReparo = new ControladorReparo();
 		String descricaoBreve;
 		String descricaoDetalhada;
-		String tempoMedioDeExecucao;
+		double tempoMedioDeExecucao;
 		Double valorMaoDeObra;
 		Reparo r;
 		
@@ -20,11 +20,11 @@ public class CadastrarReparo {
 		Scanner teclado2 = new Scanner(System.in);
 		
 		System.out.println("Entre com a descricao:");
-		descricaoBreve = teclado.next();
+		descricaoBreve = teclado.nextLine();
 		System.out.println("Entre com a descricao detalhada:");
-		descricaoDetalhada = teclado.next();
+		descricaoDetalhada = teclado.nextLine();
 		System.out.println("Entre com o tempo de Execucao:");
-		tempoMedioDeExecucao = teclado.next();
+		tempoMedioDeExecucao = teclado2.nextDouble();
 		System.out.println("Entre com o valor da mao de obra:");
 		valorMaoDeObra = teclado2.nextDouble();
 		
