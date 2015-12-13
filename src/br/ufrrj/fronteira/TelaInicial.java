@@ -13,5 +13,6 @@ public class TelaInicial {
 //		CadastrarReparo.cadastrar();
 //		CadastrarPeca.cadastrar();
 		RealizarServico.realizarServico();
+//		RealizarPagamento.realizar();
 	}
 }

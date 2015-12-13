@@ -1,7 +1,6 @@
 package br.ufrrj.controladores;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
@@ -15,10 +14,10 @@ public class ControladorServico {
 	ControladorReparo controladorReparo = new ControladorReparo();
 	ControladorPeca controladorPeca = new ControladorPeca();
 	
-	public void realizarServico(Servico servico){
+	public void realizarServico(Servico servico, String cpfCliente){
 		Integer idPagamento;
 		idPagamento = controladorPagamento.cadastrarPagamento(servico.getPagamento());
-		persistenciaServico.adicionarServico(servico.getData(), servico.getReparosRealizados(), servico.getPecasTrocadas(), idPagamento);
+		persistenciaServico.adicionarServico(servico.getData(), servico.getReparosRealizados(), servico.getPecasTrocadas(), idPagamento,cpfCliente);
 	}
 	
 	public Servico recuperarServico(Integer idServico){
@@ -29,6 +28,24 @@ public class ControladorServico {
 		servico2 = new Servico(servico.getId(), servico.getData(), reparos, pecas);
 		servico2.setPagamento(servico.getPagamento());
 		return servico2;
+	}
+	
+	public ArrayList<Servico> recuperarServicosPorCliente(String cpf){
+		ArrayList<Servico> servicos = new ArrayList<Servico>();
+		servicos = persistenciaServico.recuperarServicosPorCliente(cpf);
+		ArrayList<Servico> servicos2 = new ArrayList<Servico>();
+		Servico servico;
+		
+		for(Servico s : servicos){
+			ArrayList<Reparo> reparos = controladorReparo.recuperarReparoPorServico(s.getId());
+			ArrayList<Peca> pecas = controladorPeca.recuperaPecaPorServico(s.getId());
+			servico = new Servico(s.getId(), s.getData(), reparos, pecas);
+			servico.setPagamento(s.getPagamento());
+			servicos2.add(servico);
+		}
+		
+		
+		return servicos2;
 	}
 	
 }

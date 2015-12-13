@@ -10,6 +10,7 @@ public class ControladorCliente {
 	PersistenciaCliente persistenciaCliente = new PersistenciaCliente();
 	ControladorCarro controladorCarro = new ControladorCarro();
 	ControladorEndereco controladorEndereco = new ControladorEndereco();
+	ControladorServico controladorServico = new ControladorServico();
 	
 	public void cadastrarCliente(Cliente cliente, Carro carro, Endereco endereco){
 		Integer idEndereco;
@@ -19,6 +20,8 @@ public class ControladorCliente {
 	}
 	
 	public Cliente recuperarCliente(String cpf){
-		return persistenciaCliente.recuperarClientePorCpf(cpf);
+		Cliente cli = persistenciaCliente.recuperarClientePorCpf(cpf);
+		cli.setServicos(controladorServico.recuperarServicosPorCliente(cpf));
+		return cli; 
 	}
 }

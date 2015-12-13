@@ -30,17 +30,18 @@ public class PersistenciaServico {
 		c.fecharConexao();
 	}
 
-	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, Integer idPagamento) {
+	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, Integer idPagamento, String cpfCliente) {
 		abrirConexao();
 		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		Integer idServico = null;
-		String sql = "insert into servico (data,id_pagamento) values(?,?)";
+		String sql = "insert into servico (data,id_pagamento,cpf_cliente) values(?,?,?)";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
 			ps = conexao.prepareStatement(sql);
 			ps.setDate(1, dataSql);
 			ps.setInt(2, idPagamento);
+			ps.setString(3, cpfCliente);
 			ps.execute();
 			
 			rs = ps.getGeneratedKeys();
@@ -117,6 +118,37 @@ public class PersistenciaServico {
 			}
 			fecharConexao();
 			return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Servico> recuperarServicosPorCliente(String cpf){
+		Servico s = null;
+		ArrayList<Servico> servicos = new ArrayList<Servico>();
+		ArrayList<Peca> pecas = new ArrayList<Peca>();
+		Pagamento pagamento;
+		abrirConexao();
+		ResultSet rs;
+		String sql = "select * from servico where cpf_cliente = ?";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setString(1, cpf);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				pagamento = persistenciaPagamento.recuperarPagamento(rs.getInt("id_pagamento"));
+				s = new Servico(rs.getInt("id"), rs.getDate("data"), null, null);
+				s.setPagamento(pagamento);
+				servicos.add(s);
+			}
+			fecharConexao();
+			return servicos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			fecharConexao();

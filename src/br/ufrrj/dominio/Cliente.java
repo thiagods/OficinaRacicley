@@ -9,7 +9,7 @@ public class Cliente {
 	private ArrayList<Carro> carros;
 	private String telefone;
 	private Endereco endereco;
-	
+	private ArrayList<Servico> servicos;
 	
 	
 	public Cliente(String cpf, String nome, ArrayList<Carro> carros,
@@ -35,5 +35,13 @@ public class Cliente {
 	}
 	public Endereco getEndereco() {
 		return endereco;
-	}	
+	}
+	public ArrayList<Servico> getServicos() {
+		return servicos;
+	}
+	public void setServicos(ArrayList<Servico> servicos) {
+		this.servicos = servicos;
+	}
+	
+	
 }

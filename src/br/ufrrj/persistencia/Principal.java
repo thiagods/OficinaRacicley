@@ -2,15 +2,10 @@ package br.ufrrj.persistencia;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
+import br.ufrrj.controladores.ControladorCliente;
 import br.ufrrj.controladores.ControladorServico;
-import br.ufrrj.dominio.Pagamento;
-import br.ufrrj.dominio.Peca;
-import br.ufrrj.dominio.Reparo;
-import br.ufrrj.dominio.Servico;
+import br.ufrrj.dominio.Cliente;
 import br.ufrrj.dominio.TipoPagamento;
 
 public class Principal {
@@ -43,7 +38,7 @@ public class Principal {
 		
 //		System.out.println("cr pagamento:"+c.executar("create table pagamento(id INT auto_increment NOT NULL, tipo_pagamento VARCHAR(255), valor_total DOUBLE);"));
 //		System.out.println("cr parcela:"+c.executar("create table parcela(id INT auto_increment NOT NULL, valor DOUBLE, paga BOOL, data_vencimento DATE, id_pagamento INT, FOREIGN KEY (id_pagamento) REFERENCES pagamento(id));"));		
-//		System.out.println("cr servico:"+c.executar("create table servico(id INT auto_increment NOT NULL, data DATE, id_pagamento INT NOT NULL, FOREIGN KEY (id_pagamento) REFERENCES pagamento(id));"));
+//		System.out.println("cr servico:"+c.executar("create table servico(id INT auto_increment NOT NULL, data DATE, id_pagamento INT NOT NULL, cpf_cliente VARCHAR(255), FOREIGN KEY (id_pagamento) REFERENCES pagamento(id), FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf));"));
 //		System.out.println("cr servico_reparo:"+c.executar("create table servico_reparo(id_servico INT NOT NULL, id_reparo INT NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (id_reparo) REFERENCES reparo(id));"));
 //		System.out.println("cr servico_peca:"+c.executar("create table servico_peca(id_servico INT NOT NULL, codigo_peca VARCHAR(255) NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (codigo_peca) REFERENCES peca(codigo));"));
 		
@@ -58,6 +53,7 @@ public class Principal {
 		PersistenciaReparo persistenciaReparo = new PersistenciaReparo();
 		
 		ControladorServico controladorServico = new ControladorServico();
+		ControladorCliente controladorCliente = new ControladorCliente();
 		TipoPagamento t = TipoPagamento.valueOf("CREDITO");
 //		novaGenese(c);
 		//testando...
@@ -66,14 +62,15 @@ public class Principal {
 //		System.out.println("dropou: "+c.executar("drop table Candango"));
 //		System.out.println("inseriu: "+c.executar("insert into fabricante (nome,telefone) values('Tigre','321321');"));
 //		System.out.println("deletou: "+c.executar("delete from fabricante where id=1;"));
-	    result = c.executarSelectQuery("select * from servico");
+	    result = c.executarSelectQuery("select * from cliente");
 	    
+//	    Cliente cliente = controladorCliente.recuperarCliente("12580726705");
 	    
 //	    Pagamento pagamento = new Pagamento(TipoPagamento.DINHEIRO, 100, 3);
 //	    pagamento.pagar();
 	    
-	    Servico servico = controladorServico.recuperarServico(1);
-	    System.out.println("nada");
+//	    Servico servico = controladorServico.recuperarServico(1);
+	    
 //	    ArrayList<Fabricante> fabricantes = persistenciaFabricante.listarFabricantes();
 	    
 	    //Pagamento pag = new Pagamento(TipoPagamento.CREDITO, 500, 3);
@@ -98,10 +95,10 @@ public class Principal {
 //	    Estoque est2 = Estoque.getEstoque();
 
 	    while(result.next()){
-	    	System.out.println(result.getInt("id"));
-	    	System.out.println(result.getInt("id_pagamento"));
-//	    	System.out.println(result.getString("tipo_pagamento"));
-	    	System.out.println(result.getDate("data").toString());
+//	    	System.out.println(result.getInt("id"));
+//	    	System.out.println(result.getInt("id_pagamento"));
+	    	System.out.println(result.getString("cpf"));
+//	    	System.out.println(result.getDate("data").toString());
 //	    	System.out.println(result.getString("nome"));
 //	    	System.out.println(result.getString("categoria"));
 //	    	System.out.println(result.getString("codigo_peca"));

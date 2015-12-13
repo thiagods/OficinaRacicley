@@ -6,13 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.ufrrj.controladores.ControladorServico;
 import br.ufrrj.dominio.Carro;
 import br.ufrrj.dominio.Cliente;
 import br.ufrrj.dominio.Endereco;
+import br.ufrrj.dominio.Servico;
 
 public class PersistenciaCliente {
 	PersistenciaCarro persistenciaCarro = new PersistenciaCarro();
 	PersistenciaEndereco persistenciaEndereco = new PersistenciaEndereco();
+	ControladorServico controladorServico = new ControladorServico();
 	private ConexaoBD c;
 	private Connection conexao;
 	
@@ -43,7 +46,7 @@ public class PersistenciaCliente {
 		}	
 		fecharConexao();
 	}
-	//TODO
+	
 	public Cliente recuperarClientePorCpf(String cpf){
 		Cliente cli = null;
 		ArrayList<Carro> carros;

@@ -6,11 +6,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import javax.sql.rowset.serial.SerialArray;
-
+import br.ufrrj.controladores.ControladorCliente;
 import br.ufrrj.controladores.ControladorPeca;
 import br.ufrrj.controladores.ControladorReparo;
 import br.ufrrj.controladores.ControladorServico;
+import br.ufrrj.dominio.Cliente;
 import br.ufrrj.dominio.Pagamento;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
@@ -18,10 +18,12 @@ import br.ufrrj.dominio.Servico;
 import br.ufrrj.dominio.TipoPagamento;
 
 public class RealizarServico {
-	public static void realizarServico(){
+	public static boolean realizarServico(){
 		//TODO: Tem que fazer essa tela
 		ControladorServico controladorServico = new ControladorServico();
-		
+		ControladorCliente controladorCliente = new ControladorCliente();
+		Cliente cliente;
+		String cpf;
 		Servico servico;
 		Date data = new Date();
 		Calendar c = new GregorianCalendar();
@@ -29,7 +31,7 @@ public class RealizarServico {
 		int mes;
 		int ano;
 		Integer indicePecaSelecionada = -1;
-		Integer nParcelas;
+		Integer nParcelas = 0;
 		TipoPagamento tipoPagamento;
 		
 		ArrayList<Reparo> reparosRealizados = new ArrayList<Reparo>();
@@ -38,6 +40,15 @@ public class RealizarServico {
 		double valorMaoDeObra;
 		
 		Scanner teclado2 = new Scanner(System.in);
+		
+		System.out.println("CPF do cliente:");
+		cpf = teclado2.next();
+		
+		cliente = controladorCliente.recuperarCliente(cpf);
+		if(cliente == null){
+			System.out.println("O cpf informado nao pertence a nenhum cliente");
+			return false;
+		}
 		
 		System.out.println("Dia: ");
 		c.set(Calendar.DAY_OF_MONTH, teclado2.nextInt());
@@ -59,20 +70,24 @@ public class RealizarServico {
 			
 			listarTiposPagamento();
 			tipoPagamento = TipoPagamento.find(teclado2.nextInt());
-			
-			System.out.println("Entre com o numero de parcelas");
-			nParcelas = teclado2.nextInt();
-			
+			if(!tipoPagamento.equals(TipoPagamento.DINHEIRO)){
+				while(nParcelas < 1 || nParcelas > 3){
+					System.out.println("Entre com o numero de parcelas (de 1 a 3):");
+					nParcelas = teclado2.nextInt();
+				}
+			}else{
+				nParcelas = 1;
+			}
 			Pagamento p = new Pagamento(tipoPagamento, servico.getOrcamento(), nParcelas);
 			servico.setPagamento(p);
-			controladorServico.realizarServico(servico);
+			controladorServico.realizarServico(servico, cpf);
 			teclado2.close();
 		}else{
 			System.out.println("Orcamento nao aprovado.");
 			teclado2.close();
 		}
 		
-		
+		return true;
 	}
 	
 	private static void listarTiposPagamento(){
