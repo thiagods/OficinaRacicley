@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import br.ufrrj.controladores.ControladorServico;
 import br.ufrrj.dominio.Pagamento;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
@@ -30,8 +31,7 @@ public class Principal {
 //		System.out.println("dropou servico_peca:"+c.executar("drop table servico_peca"));
 
 		
-		//eu criei essas 4 tabelas.
-		//isso funciona
+		
 //		System.out.println("cr endereco:"+c.executar("create table endereco(id INT auto_increment PRIMARY KEY NOT NULL, numero INT, logradouro VARCHAR(255), complemento VARCHAR(255), bairro VARCHAR(255),cidade VARCHAR(255), uf VARCHAR(255),cep VARCHAR(255));"));
 //		System.out.println("cr cliente:"+c.executar("create table cliente(cpf  VARCHAR(12) PRIMARY KEY NOT NULL, nome VARCHAR(255), telefone VARCHAR(255), id_endereco INT NOT NULL, FOREIGN KEY (id_endereco) references endereco(id));"));
 //		System.out.println("cr carro: "+c.executar("create table carro(placa VARCHAR(8) PRIMARY KEY NOT NULL, marca VARCHAR(255), cor VARCHAR(255), ano INT, modelo VARCHAR(255), cpf_cliente VARCHAR(12) NOT NULL, FOREIGN KEY (cpf_cliente) references cliente(cpf));"));
@@ -42,7 +42,7 @@ public class Principal {
 //		System.out.println("cr estoque:"+c.executar("create table estoque(codigo_peca VARCHAR(255) NOT NULL, quantidade INT, FOREIGN KEY (codigo_peca) REFERENCES peca(codigo) );"));
 		
 //		System.out.println("cr pagamento:"+c.executar("create table pagamento(id INT auto_increment NOT NULL, tipo_pagamento VARCHAR(255), valor_total DOUBLE);"));
-//		System.out.println("cr parcela:"+c.executar("create table parcela(id INT auto_increment NOT NULL, valor DOUBLE, paga BOOL, data_vencimento DATE, id_pagamento INT, FOREIGN KEY (id_pagamento) REFERENCES pagamento(id));"));
+//		System.out.println("cr parcela:"+c.executar("create table parcela(id INT auto_increment NOT NULL, valor DOUBLE, paga BOOL, data_vencimento DATE, id_pagamento INT, FOREIGN KEY (id_pagamento) REFERENCES pagamento(id));"));		
 //		System.out.println("cr servico:"+c.executar("create table servico(id INT auto_increment NOT NULL, data DATE, id_pagamento INT NOT NULL, FOREIGN KEY (id_pagamento) REFERENCES pagamento(id));"));
 //		System.out.println("cr servico_reparo:"+c.executar("create table servico_reparo(id_servico INT NOT NULL, id_reparo INT NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (id_reparo) REFERENCES reparo(id));"));
 //		System.out.println("cr servico_peca:"+c.executar("create table servico_peca(id_servico INT NOT NULL, codigo_peca VARCHAR(255) NOT NULL, FOREIGN KEY (id_servico) REFERENCES servico(id), FOREIGN KEY (codigo_peca) REFERENCES peca(codigo));"));
@@ -57,19 +57,23 @@ public class Principal {
 		PersistenciaPeca persistenciaPeca = new PersistenciaPeca();
 		PersistenciaReparo persistenciaReparo = new PersistenciaReparo();
 		
-		novaGenese(c);
+		ControladorServico controladorServico = new ControladorServico();
+		TipoPagamento t = TipoPagamento.valueOf("CREDITO");
+//		novaGenese(c);
 		//testando...
 //		CadastrarFabricante.cadastrar();
 //		System.out.println("criou: "+c.executar("create table candango(id INT AUTO_INCREMENT PRIMARY KEY NOT NULL, nome VARCHAR(255));"));
 //		System.out.println("dropou: "+c.executar("drop table Candango"));
 //		System.out.println("inseriu: "+c.executar("insert into fabricante (nome,telefone) values('Tigre','321321');"));
 //		System.out.println("deletou: "+c.executar("delete from fabricante where id=1;"));
-	    result = c.executarSelectQuery("select * from reparo");
+	    result = c.executarSelectQuery("select * from servico");
 	    
 	    
 //	    Pagamento pagamento = new Pagamento(TipoPagamento.DINHEIRO, 100, 3);
 //	    pagamento.pagar();
 	    
+	    Servico servico = controladorServico.recuperarServico(1);
+	    System.out.println("nada");
 //	    ArrayList<Fabricante> fabricantes = persistenciaFabricante.listarFabricantes();
 	    
 	    //Pagamento pag = new Pagamento(TipoPagamento.CREDITO, 500, 3);
@@ -94,14 +98,14 @@ public class Principal {
 //	    Estoque est2 = Estoque.getEstoque();
 
 	    while(result.next()){
-//	    	System.out.println(result.getInt("id_servico"));
-//	    	System.out.println(result.getInt("id_reparo"));
-//	    	System.out.println(result.getString("descricao_breve"));
-//	    	System.out.println(result.getDate("data").getDate());
+	    	System.out.println(result.getInt("id"));
+	    	System.out.println(result.getInt("id_pagamento"));
+//	    	System.out.println(result.getString("tipo_pagamento"));
+	    	System.out.println(result.getDate("data").toString());
 //	    	System.out.println(result.getString("nome"));
 //	    	System.out.println(result.getString("categoria"));
 //	    	System.out.println(result.getString("codigo_peca"));
-//	    	System.out.println(result.getDouble("valor_mao_de_obra"));
+//	    	System.out.println(result.getDouble("valor"));
 	    }
 		c.fecharConexao();
 	}

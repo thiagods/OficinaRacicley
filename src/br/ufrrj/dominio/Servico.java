@@ -18,7 +18,6 @@ public class Servico {
 		this.data = data;
 		this.reparosRealizados = reparosRealizados;
 		this.pecasTrocadas = pecasTrocadas;
-		
 	}
 	
 	public Date getData() {
@@ -61,4 +60,9 @@ public class Servico {
 	public Pagamento getPagamento(){
 		return pagamento;
 	}
+
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+	
 }

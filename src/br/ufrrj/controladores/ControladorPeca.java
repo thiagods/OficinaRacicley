@@ -11,11 +11,15 @@ public class ControladorPeca {
 	ControladorEstoque controladorEstoque = new ControladorEstoque();
 	
 	public void cadastrarPeca(Peca p){
-		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().getNome(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
+		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().name(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
 		controladorEstoque.adicionarPecaNoEstoque(p.getCodigo(),p.getQuantidadeEstoque());
 	}
 	
 	public ArrayList<Peca> listarPecas(){
 		return persistenciaPeca.listarPecas();
+	}
+
+	public ArrayList<Peca> recuperaPecaPorServico(Integer idServico) {
+		return persistenciaPeca.recuperarPecasPorServico(idServico);
 	}
 }

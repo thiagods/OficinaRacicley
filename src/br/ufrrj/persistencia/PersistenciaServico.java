@@ -7,10 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import br.ufrrj.dominio.Pagamento;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
+import br.ufrrj.dominio.Servico;
 
 public class PersistenciaServico {
+	
+	PersistenciaReparo persistenciaReparo = new PersistenciaReparo();
+	PersistenciaPeca persistenciaPeca = new PersistenciaPeca();
+	PersistenciaPagamento persistenciaPagamento = new PersistenciaPagamento();
 	
 	private ConexaoBD c;
 	private Connection conexao;
@@ -24,16 +30,17 @@ public class PersistenciaServico {
 		c.fecharConexao();
 	}
 
-	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas) {
+	public void adicionarServico(Date data, ArrayList<Reparo> reparosRealizados, ArrayList<Peca> pecasTrocadas, Integer idPagamento) {
 		abrirConexao();
 		java.sql.Date dataSql = new java.sql.Date(data.getTime());
 		Integer idServico = null;
-		String sql = "insert into servico (data) values(?)";
+		String sql = "insert into servico (data,id_pagamento) values(?,?)";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
 			ps = conexao.prepareStatement(sql);
 			ps.setDate(1, dataSql);
+			ps.setInt(2, idPagamento);
 			ps.execute();
 			
 			rs = ps.getGeneratedKeys();
@@ -87,6 +94,36 @@ public class PersistenciaServico {
 			}	
 		}
 		
+	}
+	
+	public Servico recuperarServico(Integer id){
+		Servico s = null;
+		ArrayList<Reparo> reparos = new ArrayList<Reparo>();
+		ArrayList<Peca> pecas = new ArrayList<Peca>();
+		Pagamento pagamento;
+		abrirConexao();
+		ResultSet rs;
+		String sql = "select * from servico where id = ?";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				pagamento = persistenciaPagamento.recuperarPagamento(rs.getInt("id_pagamento"));
+				s = new Servico(rs.getInt("id"), rs.getDate("data"), null, null);
+				s.setPagamento(pagamento);
+			}
+			fecharConexao();
+			return s;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 }

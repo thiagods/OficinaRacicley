@@ -16,5 +16,9 @@ public class ControladorReparo {
 	public ArrayList<Reparo> listarReparos(){
 		return persistenciaReparo.listarReparos();
 	}
+	
+	public ArrayList<Reparo> recuperarReparoPorServico(Integer idServico){
+		return persistenciaReparo.recuperarReparosPorServico(idServico);
+	}
 
 }

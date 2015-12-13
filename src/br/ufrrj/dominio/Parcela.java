@@ -8,10 +8,10 @@ public class Parcela {
 	private boolean paga;
 	private Date dataVencimento;
 	
-	public Parcela(double valor, Date dataVencimento) {
+	public Parcela(double valor, boolean paga,  Date dataVencimento) {
 		super();
 		this.valor = valor;
-		this.paga = false;
+		this.paga = paga;
 		this.dataVencimento = dataVencimento;
 	}
 

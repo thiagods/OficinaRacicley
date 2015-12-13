@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.ufrrj.dominio.Fabricante;
 import br.ufrrj.dominio.Reparo;
 
 public class PersistenciaReparo {
@@ -103,6 +102,33 @@ public class PersistenciaReparo {
 		}
 		
 		return null;
-	}	
+	}
+	
+	public ArrayList<Reparo> recuperarReparosPorServico(Integer idServico){
+		ArrayList<Reparo> reparos = new ArrayList<Reparo>();
+		abrirConexao();
+		ResultSet rs;
+		String sql = "select * from servico_reparo where id_servico = ?";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setInt(1, idServico);
+			rs = ps.executeQuery();
+			
+			while(rs.next()){
+				Reparo r = recuperarReparo(rs.getInt("id_reparo"));
+				reparos.add(r);
+			}
+			return reparos;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 	
 }

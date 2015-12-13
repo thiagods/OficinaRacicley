@@ -14,13 +14,13 @@ public enum CategoriaPeca {
 		return nome;
 	}
 	
-	public static CategoriaPeca find(String nome){
-		
-		for(CategoriaPeca categoria : CategoriaPeca.values()){
-			if(categoria.getNome().equals(nome))
-				return categoria;
-		}
-		return null;
-	}
+//	public static CategoriaPeca find(String nome){
+//		
+//		for(CategoriaPeca categoria : CategoriaPeca.values()){
+//			if(categoria.getNome().equals(nome))
+//				return categoria;
+//		}
+//		return null;
+//	}
 	
 }

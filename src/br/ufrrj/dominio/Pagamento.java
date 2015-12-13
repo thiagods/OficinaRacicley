@@ -16,7 +16,8 @@ public class Pagamento {
 		this.tipoPagamento = tipoPagamento;
 		this.valorTotal = valorTotal;
 		this.parcelas = new ArrayList<Parcela>();
-		criarParcelas(nParcelas);
+		if(nParcelas != null)
+			criarParcelas(nParcelas);
 	}
 
 	public TipoPagamento getTipoPagamento() {
@@ -60,13 +61,20 @@ public class Pagamento {
 	public void criarParcelas(Integer nParcelas){
 		double valorParcela = valorTotal/nParcelas;
 		Calendar dataAtual = Calendar.getInstance();
+		dataAtual.roll(Calendar.MONTH, 1);
 		
 		for(int i = 0; i<nParcelas; i++){
 			Date dataVencimento = dataAtual.getTime();
-			Parcela p = new Parcela(valorParcela, dataVencimento);
+			Parcela p = new Parcela(valorParcela,false, dataVencimento);
 			parcelas.add(p);
 			dataAtual.roll(Calendar.MONTH, 1);
 		}
 	}
+
+	public void setParcelas(ArrayList<Parcela> parcelas) {
+		this.parcelas = parcelas;
+	}
+	
+	
 	
 }

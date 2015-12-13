@@ -11,9 +11,11 @@ import javax.sql.rowset.serial.SerialArray;
 import br.ufrrj.controladores.ControladorPeca;
 import br.ufrrj.controladores.ControladorReparo;
 import br.ufrrj.controladores.ControladorServico;
+import br.ufrrj.dominio.Pagamento;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
 import br.ufrrj.dominio.Servico;
+import br.ufrrj.dominio.TipoPagamento;
 
 public class RealizarServico {
 	public static void realizarServico(){
@@ -27,6 +29,8 @@ public class RealizarServico {
 		int mes;
 		int ano;
 		Integer indicePecaSelecionada = -1;
+		Integer nParcelas;
+		TipoPagamento tipoPagamento;
 		
 		ArrayList<Reparo> reparosRealizados = new ArrayList<Reparo>();
 		ArrayList<Peca> pecasTrocadas = new ArrayList<Peca>();
@@ -52,10 +56,30 @@ public class RealizarServico {
 		System.out.println("Valor do orçamento: R$"+servico.getOrcamento());
 		System.out.println("Deseja aprovar o orcamento?\n1 - SIM\n2 - NAO");
 		if(teclado2.nextInt() == 1){
-			controladorServico.realizarServico(data, reparosRealizados, pecasTrocadas);
+			
+			listarTiposPagamento();
+			tipoPagamento = TipoPagamento.find(teclado2.nextInt());
+			
+			System.out.println("Entre com o numero de parcelas");
+			nParcelas = teclado2.nextInt();
+			
+			Pagamento p = new Pagamento(tipoPagamento, servico.getOrcamento(), nParcelas);
+			servico.setPagamento(p);
+			controladorServico.realizarServico(servico);
+			teclado2.close();
+		}else{
+			System.out.println("Orcamento nao aprovado.");
+			teclado2.close();
 		}
 		
-		teclado2.close();
+		
+	}
+	
+	private static void listarTiposPagamento(){
+		System.out.println("Selecione o tipo de Pagamento");
+		for(TipoPagamento tipo : TipoPagamento.values()){
+			System.out.println(tipo.getCodigo()+" - "+tipo.name());
+		}
 	}
 	
 	private static ArrayList<Reparo> selecionarReparos(){
