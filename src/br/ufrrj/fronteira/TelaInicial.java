@@ -19,7 +19,7 @@ public class TelaInicial {
 			System.out.println("7 - Comprar Peca\n8 - Realizar Pagamento\n9 - Sair");
 			System.out.print("Entre com a opcao: ");			
 			opcao = entrada.nextInt();
-			System.out.println("\n\n\n\n");
+			System.out.println("\n\n\n\n\n");
 			
 			switch (opcao){
 				case 1:
