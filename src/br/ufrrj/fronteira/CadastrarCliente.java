@@ -50,7 +50,7 @@ public class CadastrarCliente {
 		telefone = teclado.next();
 
 		//endereco
-		System.out.println("Numero:");
+		System.out.println("Endereco \nNumero:");
 		numero = teclado.nextInt();
 		System.out.println("Logradouro:");
 		logradouro = teclado.next();

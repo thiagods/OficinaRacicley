@@ -2,6 +2,7 @@ package br.ufrrj.controladores;
 
 import java.util.ArrayList;
 
+import br.ufrrj.dominio.Estoque;
 import br.ufrrj.dominio.Peca;
 import br.ufrrj.dominio.Reparo;
 import br.ufrrj.dominio.Servico;
@@ -13,11 +14,15 @@ public class ControladorServico {
 	ControladorPagamento controladorPagamento = new ControladorPagamento();
 	ControladorReparo controladorReparo = new ControladorReparo();
 	ControladorPeca controladorPeca = new ControladorPeca();
+	ControladorEstoque controladorEstoque = new ControladorEstoque();
 	
 	public void realizarServico(Servico servico, String cpfCliente){
 		Integer idPagamento;
 		idPagamento = controladorPagamento.cadastrarPagamento(servico.getPagamento());
 		persistenciaServico.adicionarServico(servico.getData(), servico.getReparosRealizados(), servico.getPecasTrocadas(), idPagamento,cpfCliente);
+		Estoque estoque = Estoque.getEstoque();
+		controladorEstoque.utilizarPecas(estoque,servico.getPecasTrocadas());
+		
 	}
 	
 	public Servico recuperarServico(Integer idServico){

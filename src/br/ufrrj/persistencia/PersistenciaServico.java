@@ -57,7 +57,6 @@ public class PersistenciaServico {
 			e.printStackTrace();
 		}	
 		fecharConexao();
-		
 	}
 	
 	//So chamar se a conexao estiver aberta. Por isso eh privado

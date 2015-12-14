@@ -71,4 +71,74 @@ public class PersistenciaEstoque {
 		fecharConexao();
 		
 	}
+
+	public void utilizarPecas(Estoque estoque,ArrayList<Peca> pecasTrocadas) {
+		abrirConexao();
+		String sql = "UPDATE estoque SET (quantidade) = ? "
+				+ "WHERE codigo_peca = ?";
+		
+		
+		PreparedStatement ps;
+		for(Peca peca : pecasTrocadas){
+			
+			Integer qtd = estoque.recuperarPeca(peca).utilizar();
+			try {
+				ps = conexao.prepareStatement(sql);
+				ps.setInt(1, qtd);
+				ps.setString(2, peca.getCodigo());
+				
+				ps.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				fecharConexao();
+				e.printStackTrace();
+			}
+		}
+		fecharConexao();
+	}
+	
+	public void utilizarPeca(Estoque estoque,Peca pecaUtilizada) {
+		abrirConexao();
+		String sql = "UPDATE estoque SET (quantidade) = ? "
+				+ "WHERE codigo_peca = ?";
+				
+		PreparedStatement ps;
+	
+		Integer qtd = estoque.recuperarPeca(pecaUtilizada).utilizar();
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setInt(1, qtd);
+			ps.setString(2, pecaUtilizada.getCodigo());
+			
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		fecharConexao();
+	}
+
+	public void comprarPeca(Peca p, Integer qtd, Estoque estoque) {
+		abrirConexao();
+		String sql = "UPDATE estoque SET (quantidade) = ? "
+				+ "WHERE codigo_peca = ?";
+				
+		PreparedStatement ps;
+	
+		Integer qtdNoEstoque = estoque.recuperarPeca(p).comprar(qtd);
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setInt(1, qtdNoEstoque);
+			ps.setString(2, p.getCodigo());
+			
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
+		fecharConexao();
+		
+	}
 }

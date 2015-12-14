@@ -12,4 +12,9 @@ public class ControladorParcela {
 	public void adicionarParcelas(ArrayList<Parcela> parcelas, Integer idPagamento){
 		persistenciaParcela.adicionarParcelas(parcelas, idPagamento);
 	}
+
+	public void pagarParcela(Parcela p) {
+		p.pagar();
+		persistenciaParcela.salvarParcela(p);
+	}
 }

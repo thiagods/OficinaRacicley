@@ -52,5 +52,14 @@ public class Peca {
 		return fabricante;
 	}
 	
+	public Integer utilizar(){
+		this.quantidadeEstoque -= 1;
+		return this.quantidadeEstoque;
+	}
+	
+	public Integer comprar(Integer qtd){
+		this.quantidadeEstoque += qtd;
+		return this.quantidadeEstoque;
+	}
 	
 }

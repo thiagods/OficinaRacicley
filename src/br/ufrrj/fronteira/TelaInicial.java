@@ -12,7 +12,8 @@ public class TelaInicial {
 //		CadastrarFornecedor.cadastrar();
 //		CadastrarReparo.cadastrar();
 //		CadastrarPeca.cadastrar();
-		RealizarServico.realizarServico();
-//		RealizarPagamento.realizar();
+//		RealizarServico.realizarServico();
+//		ComprarPeca.comprar();
+		RealizarPagamento.realizar();
 	}
 }

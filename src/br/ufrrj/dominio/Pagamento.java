@@ -75,6 +75,24 @@ public class Pagamento {
 		this.parcelas = parcelas;
 	}
 	
+	public Integer getNParcelasNaoPagas(){
+		Integer nParcelas = 0;
+		
+		for(Parcela p : parcelas){
+			if(!p.isPaga())
+				nParcelas++;
+		}
+		
+		return nParcelas;
+	}
 	
+	public ArrayList<Parcela> getParcelasNaoPagas(){
+		ArrayList<Parcela> parcelasNaoPagas = new ArrayList<Parcela>();
+		for(Parcela p : parcelas){
+			if(!p.isPaga())
+				parcelasNaoPagas.add(p);
+		}
+		return parcelasNaoPagas;
+	}
 	
 }

@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.ufrrj.dominio.Parcela;
-import br.ufrrj.dominio.Peca;
-import br.ufrrj.dominio.Reparo;
 
 public class PersistenciaParcela {
 	private ConexaoBD c;
@@ -101,6 +99,26 @@ public class PersistenciaParcela {
 		}
 		
 		return null;
+	}
+
+	public void salvarParcela(Parcela p) {
+		java.sql.Date dataSql = new Date(p.getDataVencimento().getTime());
+		abrirConexao();
+		String sql = "UPDATE parcela SET (valor,paga,data_vencimento) = (?,?,?) WHERE id = ?";
+		PreparedStatement ps;
+		try {
+			ps = conexao.prepareStatement(sql);
+			ps.setDouble(1, p.getValor());
+			ps.setBoolean(2, p.isPaga());
+			ps.setDate(3, dataSql);
+			ps.setInt(4, p.getId());
+			ps.execute();
+			fecharConexao();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			fecharConexao();
+			e.printStackTrace();
+		}
 	}
 	
 }
