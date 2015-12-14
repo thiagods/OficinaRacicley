@@ -6,7 +6,7 @@ Depois de clonar, é necessário entrar na pasta do projeto.
 git pull -- Pega o código do git e atualiza no seu computador.
 git add . -- Adiciona todas as modificações feitas no git(O ponto é necessário).
 git status -- Verifica as mudanças realizadas.
-git commit -m "comentario" -- Adiciona o comentário(Necessário).
+git commit -m "comentario" -- Comita e adiciona o comentário.
 git push -- Manda as modificações pro git.
 git push origin master -- Manda as modificações pro git Master.
 git checkout 1.0 -- Muda para o branch 1.0 
@@ -16,4 +16,4 @@ git checkout master
 git merge 1.0
 git push
 
-Passarinho
+Ao criar um novo branch, é necessário dar um "git pull".
