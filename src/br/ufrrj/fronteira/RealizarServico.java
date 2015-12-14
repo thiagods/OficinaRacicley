@@ -41,7 +41,6 @@ public class RealizarServico {
 		cliente = controladorCliente.recuperarCliente(cpf);
 		if(cliente == null){
 			System.out.println("O cpf informado nao pertence a nenhum cliente");
-			teclado2.close();
 			return false;
 		}
 		
@@ -76,11 +75,9 @@ public class RealizarServico {
 			}
 			Pagamento p = new Pagamento(tipoPagamento, servico.getOrcamento(), nParcelas);
 			servico.setPagamento(p);
-			controladorServico.realizarServico(servico, cpf);
-			teclado2.close();
+			controladorServico.realizarServico(servico, cpf);			
 		}else{
 			System.out.println("Orcamento nao aprovado.");
-			teclado2.close();
 		}
 		
 		return true;

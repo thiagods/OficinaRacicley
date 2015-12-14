@@ -25,8 +25,7 @@ public class RealizarPagamento {
 		
 		cliente = controladorCliente.recuperarCliente(cpf);
 		if(cliente == null){
-			System.out.println("Nao foi encontrado nenhum cliente com o cpf informado.");
-			teclado.close();
+			System.out.println("Nao foi encontrado nenhum cliente com o cpf informado.");			
 			return false;
 		}
 //		servicos = controladorServico.recuperarServicosPorCliente(cpf);
@@ -34,13 +33,11 @@ public class RealizarPagamento {
 		
 		if(servico == null){
 			System.out.println("Este cliente nao possui nenhum servico registrado.");
-			teclado.close();
 			return false;
 		}
 		
 		if(servico.getPagamento().getNParcelasNaoPagas() == 0){
 			System.out.println("Este servico nao possui parcelas a serem pagas.");
-			teclado.close();
 			return false;
 		}
 
@@ -51,6 +48,7 @@ public class RealizarPagamento {
 		}
 		
 		controladorPagamento.pagarParcelas(servico,nParcelas);
+		System.out.println("Pagamento efetuado com sucesso");
 		
 		return true;
 	}
@@ -68,7 +66,7 @@ public class RealizarPagamento {
 			for(int i=0; i<servicosPossiveis.size(); i++){
 				System.out.println(i+" - "+servicosPossiveis.get(i).getData().toString());
 			}
-			indiceServicoSelecionado = teclado2.nextInt();
+			indiceServicoSelecionado = teclado2.nextInt();			
 			return servicosPossiveis.get(indiceServicoSelecionado);
 		}
 		return null;

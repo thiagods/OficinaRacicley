@@ -16,9 +16,10 @@ public class TelaInicial {
 			System.out.println("Selecione a opcao desejada:");
 			System.out.println("1 - Cadastrar Fornecedor\n2 - Cadastrar Fabricante\n3 - Cadastrar Cliente");
 			System.out.println("4 - Cadastrar Reparo\n5 - Cadastrar Peca\n6 - Realizar Servico");
-			System.out.println("7 - Comprar Peca\n8 - Realizar Pagamento");
-			
+			System.out.println("7 - Comprar Peca\n8 - Realizar Pagamento\n9 - Sair");
+			System.out.print("Entre com a opcao: ");			
 			opcao = entrada.nextInt();
+			System.out.println("\n\n\n\n");
 			
 			switch (opcao){
 				case 1:

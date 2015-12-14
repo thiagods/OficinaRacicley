@@ -51,7 +51,7 @@ public class Consultas {
 //		
 //		ControladorServico controladorServico = new ControladorServico();
 //		ControladorCliente controladorCliente = new ControladorCliente();
-//		novaGenese(c);
+		novaGenese(c);
 		
 		
 //		selectPeca(c);
