@@ -54,7 +54,6 @@ public class CadastrarFornecedor {
 		else
 			System.out.println("Nao foi possivel cadastrar o fornecedor.");
 		
-		teclado.close();
 	}
 	
 }

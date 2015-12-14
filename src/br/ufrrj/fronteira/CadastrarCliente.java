@@ -86,7 +86,5 @@ public class CadastrarCliente {
 			System.out.println("Cliente cadastrado com sucesso.");
 		else
 			System.out.println("Nao foi possivel cadastrar o cliente");
-		teclado.close();
-		teclado2.close();
 	}
 }

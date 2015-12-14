@@ -62,8 +62,6 @@ public class CadastrarPeca {
 		else
 			System.out.println("Nao foi possivel cadastrar a peca.");
 		
-		teclado.close();
-		teclado2.close();
 	}
 	
 	private static CategoriaPeca selecionaCategoria(int selecionado) {

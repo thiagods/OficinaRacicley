@@ -22,8 +22,6 @@ public class CadastrarFabricante {
 			System.out.println("Fabricante cadastrado com sucesso");
 		}else{
 			System.out.println("Nao foi possivel cadastrar o fabricante");
-		}
-		teclado.close();
-		
+		}	
 	}
 }

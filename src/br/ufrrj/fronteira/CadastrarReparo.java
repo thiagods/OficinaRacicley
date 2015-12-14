@@ -35,8 +35,5 @@ public class CadastrarReparo {
 			System.out.println("Reparo cadastrado com sucesso");
 		else
 			System.out.println("O reparo nao pode ser cadastrado.");
-		
-		teclado.close();
-		teclado2.close();
 	}
 }

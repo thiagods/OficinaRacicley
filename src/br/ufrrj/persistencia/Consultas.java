@@ -43,7 +43,7 @@ public class Consultas {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		ConexaoBD c = new ConexaoBD();
+		ConexaoBD c = new ConexaoBD();		
 		c.abrirConexao();
 //		PersistenciaFabricante persistenciaFabricante = new PersistenciaFabricante();
 //		PersistenciaPeca persistenciaPeca = new PersistenciaPeca();

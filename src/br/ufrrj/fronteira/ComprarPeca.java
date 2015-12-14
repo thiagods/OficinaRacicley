@@ -26,8 +26,7 @@ public class ComprarPeca {
 		qtd = teclado.nextInt();
 		
 		controladorEstoque.comprarPeca(p,qtd,e);
-		
-		teclado.close();
+
 	}
 	
 	public static void listarPecas(Estoque e){

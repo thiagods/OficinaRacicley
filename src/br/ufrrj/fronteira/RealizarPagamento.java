@@ -51,7 +51,6 @@ public class RealizarPagamento {
 		}
 		
 		controladorPagamento.pagarParcelas(servico,nParcelas);
-		teclado.close();
 		
 		return true;
 	}
