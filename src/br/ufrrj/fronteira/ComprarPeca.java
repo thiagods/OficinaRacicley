@@ -15,7 +15,7 @@ public class ComprarPeca {
 		Integer qtd;
 		Peca p;
 		Scanner teclado = new Scanner(System.in);
-		
+		System.out.println("Comprar Peca\n");
 		System.out.println("Entre com o codigo da peca desejada.");
 		listarPecas(e);
 		codigo = teclado.next();

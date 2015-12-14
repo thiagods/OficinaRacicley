@@ -9,8 +9,10 @@ public class ControladorReparo {
 	
 	PersistenciaReparo persistenciaReparo = new PersistenciaReparo();
 	
-	public void cadastrarReparo(Reparo r){
-		persistenciaReparo.adicionarReparo(r.getDescricaoBreve(), r.getDescricaoDetalhada(), r.getTempoMedioDeExecucao(), r.getValorMaoDeObra());
+	public boolean cadastrarReparo(Reparo r){
+		if(persistenciaReparo.adicionarReparo(r.getDescricaoBreve(), r.getDescricaoDetalhada(), r.getTempoMedioDeExecucao(), r.getValorMaoDeObra()) == -1)
+			return false;
+		return true;
 	}
 	
 	public ArrayList<Reparo> listarReparos(){

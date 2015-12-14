@@ -19,7 +19,6 @@ import br.ufrrj.dominio.TipoPagamento;
 
 public class RealizarServico {
 	public static boolean realizarServico(){
-		//TODO: Tem que fazer essa tela
 		ControladorServico controladorServico = new ControladorServico();
 		ControladorCliente controladorCliente = new ControladorCliente();
 		Cliente cliente;
@@ -27,29 +26,26 @@ public class RealizarServico {
 		Servico servico;
 		Date data = new Date();
 		Calendar c = new GregorianCalendar();
-		int dia;
-		int mes;
-		int ano;
-		Integer indicePecaSelecionada = -1;
+		
 		Integer nParcelas = 0;
 		TipoPagamento tipoPagamento;
 		
 		ArrayList<Reparo> reparosRealizados = new ArrayList<Reparo>();
 		ArrayList<Peca> pecasTrocadas = new ArrayList<Peca>();
-//		ArrayList<Peca> pecasPossiveis = new ArrayList<Peca>(); 
-		double valorMaoDeObra;
 		
 		Scanner teclado2 = new Scanner(System.in);
-		
+		System.out.println("Realizar Servico\n");
 		System.out.println("CPF do cliente:");
 		cpf = teclado2.next();
 		
 		cliente = controladorCliente.recuperarCliente(cpf);
 		if(cliente == null){
 			System.out.println("O cpf informado nao pertence a nenhum cliente");
+			teclado2.close();
 			return false;
 		}
 		
+		System.out.println("Data:");
 		System.out.println("Dia: ");
 		c.set(Calendar.DAY_OF_MONTH, teclado2.nextInt());
 		System.out.println("Mes: ");

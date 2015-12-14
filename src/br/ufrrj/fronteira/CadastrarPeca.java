@@ -27,7 +27,7 @@ public class CadastrarPeca {
 		double valorCompra;
 		double valorVenda;
 		Integer idFabricante;
-		
+		System.out.println("Cadastrar Peca\n");
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);
 		
@@ -57,7 +57,10 @@ public class CadastrarPeca {
 		idFabricante = teclado2.nextInt();
 		
 		p = new Peca(codigo, categoria, descricao, localizacao, quantidadeEstoque, valorCompra, valorVenda,new Fabricante(idFabricante, null, null));
-		controladorPeca.cadastrarPeca(p);
+		if(controladorPeca.cadastrarPeca(p) == true)
+			System.out.println("Peca cadastrada com sucesso");
+		else
+			System.out.println("Nao foi possivel cadastrar a peca.");
 		
 		teclado.close();
 		teclado2.close();

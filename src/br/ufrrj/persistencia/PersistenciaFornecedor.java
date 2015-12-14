@@ -24,7 +24,7 @@ public class PersistenciaFornecedor {
 		c.fecharConexao();
 	}
 	
-	public void adicionarFornecedor(String telefone, String nomeVendedor, Integer idEndereco){
+	public boolean adicionarFornecedor(String telefone, String nomeVendedor, Integer idEndereco){
 		abrirConexao();
 		String sql = "insert into fornecedor (telefone,nome_vendedor,id_endereco) values(?,?,?)";
 		PreparedStatement ps;
@@ -38,8 +38,10 @@ public class PersistenciaFornecedor {
 			// TODO Auto-generated catch block
 			fecharConexao();
 			e.printStackTrace();
+			return false;
 		}	
 		fecharConexao();
+		return true;
 	}
 	
 	public ArrayList<Fornecedor> listarFornecedores(){

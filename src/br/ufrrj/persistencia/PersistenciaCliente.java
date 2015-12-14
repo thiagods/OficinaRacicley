@@ -10,7 +10,6 @@ import br.ufrrj.controladores.ControladorServico;
 import br.ufrrj.dominio.Carro;
 import br.ufrrj.dominio.Cliente;
 import br.ufrrj.dominio.Endereco;
-import br.ufrrj.dominio.Servico;
 
 public class PersistenciaCliente {
 	PersistenciaCarro persistenciaCarro = new PersistenciaCarro();
@@ -28,7 +27,7 @@ public class PersistenciaCliente {
 		c.fecharConexao();
 	}
 	
-	public void CadastrarCliente(String cpf, String nome, String telefone, Integer idEndereco){
+	public boolean CadastrarCliente(String cpf, String nome, String telefone, Integer idEndereco){
 		abrirConexao();
 		String sql = "insert into cliente (cpf, nome, telefone, id_endereco) values(?,?,?,?)";
 		PreparedStatement ps;
@@ -43,8 +42,10 @@ public class PersistenciaCliente {
 			// TODO Auto-generated catch block
 			fecharConexao();
 			e.printStackTrace();
+			return false;
 		}	
 		fecharConexao();
+		return true;
 	}
 	
 	public Cliente recuperarClientePorCpf(String cpf){

@@ -6,13 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.ufrrj.dominio.Carro;
 import br.ufrrj.dominio.CategoriaPeca;
-import br.ufrrj.dominio.Endereco;
 import br.ufrrj.dominio.Fabricante;
-import br.ufrrj.dominio.Fornecedor;
 import br.ufrrj.dominio.Peca;
-import br.ufrrj.dominio.Reparo;
 
 public class PersistenciaPeca {
 	private ConexaoBD c;
@@ -28,7 +24,7 @@ public class PersistenciaPeca {
 		c.fecharConexao();
 	}
 	
-	public void adicionarPeca(String codigo, String categoria, String descricao,String localizacao,double valor_compra,double valor_venda, Integer idFabricante){
+	public boolean adicionarPeca(String codigo, String categoria, String descricao,String localizacao,double valor_compra,double valor_venda, Integer idFabricante){
 		abrirConexao();
 		String sql = "insert into peca (codigo, categoria, descricao,localizacao, valor_compra, valor_venda, id_fabricante) values(?,?,?,?,?,?,?)";
 		PreparedStatement ps;
@@ -46,8 +42,10 @@ public class PersistenciaPeca {
 			// TODO Auto-generated catch block
 			fecharConexao();
 			e.printStackTrace();
+			return false;
 		}	
 		fecharConexao();
+		return true;
 	}
 	
 	

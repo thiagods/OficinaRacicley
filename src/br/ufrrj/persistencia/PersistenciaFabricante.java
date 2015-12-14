@@ -22,7 +22,7 @@ public class PersistenciaFabricante {
 		c.fecharConexao();
 	}
 	
-	public void adicionar(String nome, String telefone){
+	public boolean adicionar(String nome, String telefone){
 		abrirConexao();
 		String sql = "insert into fabricante (nome,telefone) values(?,?)";
 		PreparedStatement ps;
@@ -35,8 +35,10 @@ public class PersistenciaFabricante {
 			// TODO Auto-generated catch block
 			fecharConexao();
 			e.printStackTrace();
+			return false;
 		}	
 		fecharConexao();
+		return true;
 	}
 	
 	public Fabricante recuperarFabricante(Integer id){

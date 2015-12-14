@@ -16,6 +16,7 @@ public class CadastrarReparo {
 		Double valorMaoDeObra;
 		Reparo r;
 		
+		System.out.println("Cadastrar Reparo\n");
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);
 		
@@ -30,7 +31,10 @@ public class CadastrarReparo {
 		
 		r = new Reparo(descricaoBreve, descricaoDetalhada, tempoMedioDeExecucao, valorMaoDeObra);		
 		
-		controladorReparo.cadastrarReparo(r);
+		if(controladorReparo.cadastrarReparo(r) == true)
+			System.out.println("Reparo cadastrado com sucesso");
+		else
+			System.out.println("O reparo nao pode ser cadastrado.");
 		
 		teclado.close();
 		teclado2.close();

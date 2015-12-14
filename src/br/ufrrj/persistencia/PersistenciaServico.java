@@ -98,8 +98,6 @@ public class PersistenciaServico {
 	
 	public Servico recuperarServico(Integer id){
 		Servico s = null;
-		ArrayList<Reparo> reparos = new ArrayList<Reparo>();
-		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		Pagamento pagamento;
 		abrirConexao();
 		ResultSet rs;
@@ -129,7 +127,6 @@ public class PersistenciaServico {
 	public ArrayList<Servico> recuperarServicosPorCliente(String cpf){
 		Servico s = null;
 		ArrayList<Servico> servicos = new ArrayList<Servico>();
-		ArrayList<Peca> pecas = new ArrayList<Peca>();
 		Pagamento pagamento;
 		abrirConexao();
 		ResultSet rs;

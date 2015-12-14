@@ -21,7 +21,7 @@ public class PersistenciaCarro {
 		c.fecharConexao();
 	}
 	
-	public void cadastrarCarro(String placa, String marca, String cor, int ano, String modelo, String cpfCliente){
+	public boolean cadastrarCarro(String placa, String marca, String cor, int ano, String modelo, String cpfCliente){
 		abrirConexao();
 		String sql = "insert into carro (placa, marca, cor, ano, modelo, cpf_cliente) values(?,?,?,?,?,?)";
 		PreparedStatement ps;
@@ -38,8 +38,10 @@ public class PersistenciaCarro {
 			// TODO Auto-generated catch block
 			fecharConexao();
 			e.printStackTrace();
+			return false;
 		}	
 		fecharConexao();
+		return true;
 	}
 	
 	public Carro recuperarCarro(String placa){

@@ -7,20 +7,19 @@ import br.ufrrj.controladores.ControladorCliente;
 import br.ufrrj.controladores.ControladorPagamento;
 import br.ufrrj.controladores.ControladorServico;
 import br.ufrrj.dominio.Cliente;
-import br.ufrrj.dominio.Parcela;
 import br.ufrrj.dominio.Servico;
 
 public class RealizarPagamento {
 	public static boolean realizar(){
 		ControladorCliente controladorCliente = new ControladorCliente();
-		ControladorServico controladorServico = new ControladorServico();
 		ControladorPagamento controladorPagamento = new ControladorPagamento();
 		String cpf;
 		Cliente cliente;
 		Servico servico;
-		int nParcelas;
+		int nParcelas = -1;
 		Scanner teclado = new Scanner(System.in);
 		
+		System.out.println("Realizar Pagamento\n");
 		System.out.println("Entre com o cpf do cliente");
 		cpf = teclado.next();
 		
@@ -35,24 +34,23 @@ public class RealizarPagamento {
 		
 		if(servico == null){
 			System.out.println("Este cliente nao possui nenhum servico registrado.");
+			teclado.close();
 			return false;
 		}
 		
 		if(servico.getPagamento().getNParcelasNaoPagas() == 0){
 			System.out.println("Este servico nao possui parcelas a serem pagas.");
+			teclado.close();
 			return false;
 		}
-//		System.out.println("Selecione a parcela a ser paga");
-		System.out.println("Ha "+servico.getPagamento().getNParcelasNaoPagas()+" parcelas nao pagas");
-		System.out.println("Deseja pagar quantas parcelas?");
-		nParcelas = teclado.nextInt();
+
+		while(nParcelas < 0 || nParcelas > servico.getPagamento().getNParcelasNaoPagas()){
+			System.out.println("Ha "+servico.getPagamento().getNParcelasNaoPagas()+" parcelas nao pagas");
+			System.out.println("Deseja pagar quantas parcelas?");
+			nParcelas = teclado.nextInt();
+		}
 		
 		controladorPagamento.pagarParcelas(servico,nParcelas);
-//		for(Parcela p : servico.getPagamento().getParcelas()){
-//			Aqui vai listar as parcelas pro usuario escolher qual pagar
-//			mas não seria melhor pagar sempre a primeira parcela não paga não?
-//		}
-		
 		teclado.close();
 		
 		return true;

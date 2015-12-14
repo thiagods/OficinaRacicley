@@ -9,8 +9,8 @@ public class ControladorCarro {
 	
 	PersistenciaCarro persistenciaCarro = new PersistenciaCarro();
 	
-	public void cadastrarCarro(String placa, String marca, String cor, int ano, String modelo, String cpfCliente){
-		persistenciaCarro.cadastrarCarro(placa, marca, cor, ano, modelo, cpfCliente);
+	public boolean cadastrarCarro(String placa, String marca, String cor, int ano, String modelo, String cpfCliente){
+		return persistenciaCarro.cadastrarCarro(placa, marca, cor, ano, modelo, cpfCliente);
 	}
 	
 	public Carro recuperarcCarro(String placa){

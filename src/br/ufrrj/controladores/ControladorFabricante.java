@@ -9,8 +9,8 @@ public class ControladorFabricante {
 	
 	PersistenciaFabricante persistenciaFabricante = new PersistenciaFabricante();
 	
-	public void cadastrarFabricante(String nome, String telefone){
-		persistenciaFabricante.adicionar(nome, telefone);
+	public boolean cadastrarFabricante(String nome, String telefone){
+		return persistenciaFabricante.adicionar(nome, telefone);
 	}
 	
 	public Fabricante recuperarFabricante(Integer idFabricante ){

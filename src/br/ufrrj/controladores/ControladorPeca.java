@@ -10,9 +10,11 @@ public class ControladorPeca {
 	PersistenciaPeca persistenciaPeca = new PersistenciaPeca();
 	ControladorEstoque controladorEstoque = new ControladorEstoque();
 	
-	public void cadastrarPeca(Peca p){
-		persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().name(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
+	public boolean cadastrarPeca(Peca p){
+		boolean retorno;
+		retorno = persistenciaPeca.adicionarPeca(p.getCodigo(), p.getCategoria().name(), p.getDescricao(), p.getLocalizacao(), p.getValorCompra(), p.getValorVenda(),p.getFabricante().getId());
 		controladorEstoque.adicionarPecaNoEstoque(p.getCodigo(),p.getQuantidadeEstoque());
+		return retorno;
 	}
 	
 	public ArrayList<Peca> listarPecas(){

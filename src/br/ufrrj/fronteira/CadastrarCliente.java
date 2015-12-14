@@ -1,6 +1,5 @@
 package br.ufrrj.fronteira;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,9 +11,6 @@ import br.ufrrj.dominio.Endereco;
 public class CadastrarCliente {
 	public static void cadastrar() {
 		ControladorCliente controladorCliente = new ControladorCliente();
-		//TODO: Problemas com o Scanner
-		//quando tem mais de uma palavra, o next() da ruim. Ele só pega uma palavra
-		//se eu usar o nextLine(), ele pega mais de uma palavra, mas da ruim na hora de usar o nextInt().
 		String cpf;
 		String nome;
 		String telefone;
@@ -40,7 +36,9 @@ public class CadastrarCliente {
 		
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado2 = new Scanner(System.in);
-
+		
+		System.out.println("Cadastrar Cliente\n");
+		
 		//cliente
 		System.out.println("CPF:");
 		cpf = teclado.next();
@@ -84,8 +82,11 @@ public class CadastrarCliente {
 		carro = new Carro(placa, marca, cor, ano, modelo);
 		endereco = new Endereco(0, numero, logradouro, complemento, bairro, cidade, uf, cep);
 		
-		controladorCliente.cadastrarCliente(cliente, carro, endereco);
-		
+		if(controladorCliente.cadastrarCliente(cliente, carro, endereco) == true)
+			System.out.println("Cliente cadastrado com sucesso.");
+		else
+			System.out.println("Nao foi possivel cadastrar o cliente");
 		teclado.close();
+		teclado2.close();
 	}
 }

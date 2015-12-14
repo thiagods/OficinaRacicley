@@ -12,11 +12,14 @@ public class ControladorCliente {
 	ControladorEndereco controladorEndereco = new ControladorEndereco();
 	ControladorServico controladorServico = new ControladorServico();
 	
-	public void cadastrarCliente(Cliente cliente, Carro carro, Endereco endereco){
+	public boolean cadastrarCliente(Cliente cliente, Carro carro, Endereco endereco){
 		Integer idEndereco;
 		idEndereco = controladorEndereco.cadastrarEndereco(endereco.getNumero(), endereco.getLogradouro(), endereco.getComplemento(), endereco.getBairro(), endereco.getCidade(), endereco.getUf(), endereco.getCep());
-		persistenciaCliente.CadastrarCliente(cliente.getCpf(), cliente.getNome(), cliente.getTelefone(), idEndereco);
-		controladorCarro.cadastrarCarro(carro.getPlaca(), carro.getMarca(), carro.getCor(), carro.getAno(), carro.getModelo(), cliente.getCpf());
+		if(idEndereco == -1)
+			return false;
+		if(persistenciaCliente.CadastrarCliente(cliente.getCpf(), cliente.getNome(), cliente.getTelefone(), idEndereco) == false)
+			return false;
+		return controladorCarro.cadastrarCarro(carro.getPlaca(), carro.getMarca(), carro.getCor(), carro.getAno(), carro.getModelo(), cliente.getCpf());
 	}
 	
 	public Cliente recuperarCliente(String cpf){

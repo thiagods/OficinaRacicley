@@ -24,7 +24,7 @@ public class CadastrarFornecedor {
 		String cep;
 		
 		Scanner teclado = new Scanner(System.in);
-		
+		System.out.println("Cadastrar Fonecedor:\n");
 		//Fornecedor
 		System.out.println("Telefone:");
 		telefone = teclado.next();
@@ -49,7 +49,10 @@ public class CadastrarFornecedor {
 		endereco = new Endereco(0, numero, logradouro, complemento, bairro, cidade, uf, cep);
 		
 		f = new Fornecedor(0, telefone, nomeVendedor, endereco);
-		controladorFornecedor.cadastrarFornecedor(f);
+		if(controladorFornecedor.cadastrarFornecedor(f) == true)
+			System.out.println("Fornecedor cadastrado com sucesso");
+		else
+			System.out.println("Nao foi possivel cadastrar o fornecedor.");
 		
 		teclado.close();
 	}
